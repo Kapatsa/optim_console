@@ -7,6 +7,10 @@
 //
 
 #include <iostream>
+#include <fstream>
+#include <random>
+#include <ctime>
+using namespace std;
 
 int main(int argc, const char * argv[]) {
     // insert code here...

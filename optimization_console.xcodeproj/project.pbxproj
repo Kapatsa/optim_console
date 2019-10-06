@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		254308472349F34100986D5A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 254308462349F34100986D5A /* main.cpp */; };
+		25430850234A1E6200986D5A /* Area.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2543084E234A1E6200986D5A /* Area.cpp */; };
+		25430853234A1FD100986D5A /* RectArea.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25430851234A1FD100986D5A /* RectArea.cpp */; };
+		25430856234A1FE200986D5A /* OptMethod.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25430854234A1FE200986D5A /* OptMethod.cpp */; };
+		25430859234A200000986D5A /* GradDesc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25430857234A200000986D5A /* GradDesc.cpp */; };
+		2543085C234A205800986D5A /* Stochastic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2543085A234A205800986D5A /* Stochastic.cpp */; };
+		2543085F234A206900986D5A /* StopCriterion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2543085D234A206900986D5A /* StopCriterion.cpp */; };
+		25430862234A20C800986D5A /* Iterative.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25430860234A20C800986D5A /* Iterative.cpp */; };
+		25430865234A210000986D5A /* Abs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25430863234A210000986D5A /* Abs.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +33,22 @@
 /* Begin PBXFileReference section */
 		254308432349F34100986D5A /* optimization_console */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = optimization_console; sourceTree = BUILT_PRODUCTS_DIR; };
 		254308462349F34100986D5A /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		2543084E234A1E6200986D5A /* Area.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Area.cpp; sourceTree = "<group>"; };
+		2543084F234A1E6200986D5A /* Area.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Area.hpp; sourceTree = "<group>"; };
+		25430851234A1FD100986D5A /* RectArea.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RectArea.cpp; sourceTree = "<group>"; };
+		25430852234A1FD100986D5A /* RectArea.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RectArea.hpp; sourceTree = "<group>"; };
+		25430854234A1FE200986D5A /* OptMethod.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OptMethod.cpp; sourceTree = "<group>"; };
+		25430855234A1FE200986D5A /* OptMethod.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = OptMethod.hpp; sourceTree = "<group>"; };
+		25430857234A200000986D5A /* GradDesc.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GradDesc.cpp; sourceTree = "<group>"; };
+		25430858234A200000986D5A /* GradDesc.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GradDesc.hpp; sourceTree = "<group>"; };
+		2543085A234A205800986D5A /* Stochastic.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Stochastic.cpp; sourceTree = "<group>"; };
+		2543085B234A205800986D5A /* Stochastic.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Stochastic.hpp; sourceTree = "<group>"; };
+		2543085D234A206900986D5A /* StopCriterion.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = StopCriterion.cpp; sourceTree = "<group>"; };
+		2543085E234A206900986D5A /* StopCriterion.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StopCriterion.hpp; sourceTree = "<group>"; };
+		25430860234A20C800986D5A /* Iterative.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Iterative.cpp; sourceTree = "<group>"; };
+		25430861234A20C800986D5A /* Iterative.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Iterative.hpp; sourceTree = "<group>"; };
+		25430863234A210000986D5A /* Abs.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Abs.cpp; sourceTree = "<group>"; };
+		25430864234A210000986D5A /* Abs.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Abs.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +82,22 @@
 			isa = PBXGroup;
 			children = (
 				254308462349F34100986D5A /* main.cpp */,
+				2543084E234A1E6200986D5A /* Area.cpp */,
+				2543084F234A1E6200986D5A /* Area.hpp */,
+				25430851234A1FD100986D5A /* RectArea.cpp */,
+				25430852234A1FD100986D5A /* RectArea.hpp */,
+				25430854234A1FE200986D5A /* OptMethod.cpp */,
+				25430855234A1FE200986D5A /* OptMethod.hpp */,
+				25430857234A200000986D5A /* GradDesc.cpp */,
+				25430858234A200000986D5A /* GradDesc.hpp */,
+				2543085A234A205800986D5A /* Stochastic.cpp */,
+				2543085B234A205800986D5A /* Stochastic.hpp */,
+				2543085D234A206900986D5A /* StopCriterion.cpp */,
+				2543085E234A206900986D5A /* StopCriterion.hpp */,
+				25430860234A20C800986D5A /* Iterative.cpp */,
+				25430861234A20C800986D5A /* Iterative.hpp */,
+				25430863234A210000986D5A /* Abs.cpp */,
+				25430864234A210000986D5A /* Abs.hpp */,
 			);
 			path = optimization_console;
 			sourceTree = "<group>";
@@ -118,7 +158,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25430865234A210000986D5A /* Abs.cpp in Sources */,
+				2543085C234A205800986D5A /* Stochastic.cpp in Sources */,
+				25430850234A1E6200986D5A /* Area.cpp in Sources */,
+				25430853234A1FD100986D5A /* RectArea.cpp in Sources */,
+				25430862234A20C800986D5A /* Iterative.cpp in Sources */,
+				25430856234A1FE200986D5A /* OptMethod.cpp in Sources */,
+				2543085F234A206900986D5A /* StopCriterion.cpp in Sources */,
 				254308472349F34100986D5A /* main.cpp in Sources */,
+				25430859234A200000986D5A /* GradDesc.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
