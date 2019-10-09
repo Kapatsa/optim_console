@@ -14,25 +14,26 @@
 #include "Area.hpp"
 #include "RectArea.hpp"
 #include "Function.hpp"
+#include "StopCriterion.hpp"
+#include "Abs.hpp"
 // ----------------
 
 class OptMethod {
 protected:
-    Area * area;
-    Function * f;
+    //Area * area;
+    //Function * f;
     double long *x0;
     double long *xFin;
-    long int nIter;
-    
+    //long int nIter;
+    //?include? int dim;
     //StopCriterion stop;
 public:
     //!TODO: constructor for all data
     OptMethod(){};
-    OptMethod(Function * f, Area * area, double long *x0) : f(f), area(area), x0(x0) {
-        
+    OptMethod(double long *x0) : x0(x0) {
     };
     ~OptMethod(){};
-    virtual long double optimize() = 0;
+    virtual long double optimize(Area * area, Function * function, StopCriterion * stopCrit) = 0;
     long double GetXFin(){return *xFin;};
 };
 #endif /* OptMethod_hpp */

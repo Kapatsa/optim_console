@@ -22,9 +22,7 @@ class GradDesc : public OptMethod {
 public:
     GradDesc(){};
     ~GradDesc(){};
-    long double optimize() override {
-        return 1;
-    };
+    long double optimize(Area * area, Function * function, StopCriterion * stopCrit) override;
 };
 
 

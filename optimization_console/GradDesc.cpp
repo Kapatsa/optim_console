@@ -7,3 +7,8 @@
 //
 
 #include "GradDesc.hpp"
+
+
+double long GradDesc::optimize(Area * area, Function * function, StopCriterion * stopCrit){
+    return 0;
+};
