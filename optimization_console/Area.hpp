@@ -11,4 +11,13 @@
 
 #include <stdio.h>
 
+class Area {
+
+public:
+    Area(){};
+    ~Area(){};
+    virtual bool isIn(double x, double y) = 0;
+    //virtual bool isBorder();
+};
+
 #endif /* Area_hpp */

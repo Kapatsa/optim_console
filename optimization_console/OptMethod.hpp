@@ -10,5 +10,30 @@
 #define OptMethod_hpp
 
 #include <stdio.h>
+// ----------------
+#include "Area.hpp"
+#include "RectArea.hpp"
+#include "Function.hpp"
+// ----------------
 
+class OptMethod {
+protected:
+    Area * area;
+    Function * f;
+    double long x0;
+    double long y0;
+    double long xFin;
+    double long yFin;
+    
+    //StopCriterion stop;
+public:
+    //!TODO: constructor for all data
+    OptMethod(){};
+    OptMethod(Function * f, Area * area, double long x0, double long y0) : f(f), area(area), x0(x0), y0(y0)  {
+    };
+    ~OptMethod(){};
+    virtual long double optimize() = 0;
+    long double GetXFin(){return xFin;};
+    long double GetYFin(){return yFin;};
+};
 #endif /* OptMethod_hpp */
