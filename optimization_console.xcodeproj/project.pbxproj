@@ -17,6 +17,7 @@
 		25430862234A20C800986D5A /* Iterative.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25430860234A20C800986D5A /* Iterative.cpp */; };
 		25430865234A210000986D5A /* Abs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25430863234A210000986D5A /* Abs.cpp */; };
 		25878B4A234CEAAE00C207A3 /* Function.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25878B48234CEAAE00C207A3 /* Function.cpp */; };
+		25878B50234E53D300C207A3 /* stuff.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25878B4E234E53D300C207A3 /* stuff.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -52,6 +53,8 @@
 		25430864234A210000986D5A /* Abs.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Abs.hpp; sourceTree = "<group>"; };
 		25878B48234CEAAE00C207A3 /* Function.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Function.cpp; sourceTree = "<group>"; };
 		25878B49234CEAAE00C207A3 /* Function.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Function.hpp; sourceTree = "<group>"; };
+		25878B4E234E53D300C207A3 /* stuff.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = stuff.cpp; sourceTree = "<group>"; };
+		25878B4F234E53D300C207A3 /* stuff.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = stuff.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +106,8 @@
 				25430864234A210000986D5A /* Abs.hpp */,
 				25878B48234CEAAE00C207A3 /* Function.cpp */,
 				25878B49234CEAAE00C207A3 /* Function.hpp */,
+				25878B4E234E53D300C207A3 /* stuff.cpp */,
+				25878B4F234E53D300C207A3 /* stuff.hpp */,
 			);
 			path = optimization_console;
 			sourceTree = "<group>";
@@ -173,6 +178,7 @@
 				25878B4A234CEAAE00C207A3 /* Function.cpp in Sources */,
 				254308472349F34100986D5A /* main.cpp in Sources */,
 				25430859234A200000986D5A /* GradDesc.cpp in Sources */,
+				25878B50234E53D300C207A3 /* stuff.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

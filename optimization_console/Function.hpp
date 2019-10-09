@@ -19,6 +19,7 @@ public:
     int dim;
     Function(){};
     ~Function(){};
+    
     virtual long double eval(long double *x) = 0;
     virtual long double grad(long double *x, int varInd) = 0;
     //what to do with this one??

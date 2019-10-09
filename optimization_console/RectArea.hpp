@@ -14,17 +14,25 @@
 
 class RectArea : protected Area {
 protected:
-    double x1;
-    double y1; // (x1, y1) - lower left point of rect
-    double x2;
-    double y2; // (x2, y2) - upper right point of rect
+    int dim;
+    double long *range; // [( , );( , );( , )]  // 4 when dim = 2, 6 when dim = 3
 public:
     RectArea(){};
-    ~RectArea(){};
-    RectArea(double x1, double y1, double x2, double y2) : x1(x1), y1(y1), x2(x2), y2(y2)  {
+    ~RectArea(){ delete [] range; };
+    RectArea(double long *x, int dim){
+        range = new double long [2*dim];
+        for (int i = 0; i < dim; ++i) range[i] = x[i];
     };
-    bool isIn(double x, double y) override {
-        return ((x>x1)&&(x<x2)&&(y>y1)&&(y<y2));
+    bool isIn(double long *point) override {
+        bool temp = 1;
+        for (int j = 0; j < dim; ++j){
+            for (int i = 0; i < dim; ++i){
+                if ((point[j] < range[2*i])&&(point[j] > range[2*i+1])){
+                   return temp = 0;
+                }
+            }
+        };
+        return temp;
     };
 };
 

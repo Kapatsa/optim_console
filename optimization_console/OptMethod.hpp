@@ -20,20 +20,19 @@ class OptMethod {
 protected:
     Area * area;
     Function * f;
-    double long x0;
-    double long y0;
-    double long xFin;
-    double long yFin;
+    double long *x0;
+    double long *xFin;
+    long int nIter;
     
     //StopCriterion stop;
 public:
     //!TODO: constructor for all data
     OptMethod(){};
-    OptMethod(Function * f, Area * area, double long x0, double long y0) : f(f), area(area), x0(x0), y0(y0)  {
+    OptMethod(Function * f, Area * area, double long *x0) : f(f), area(area), x0(x0) {
+        
     };
     ~OptMethod(){};
     virtual long double optimize() = 0;
-    long double GetXFin(){return xFin;};
-    long double GetYFin(){return yFin;};
+    long double GetXFin(){return *xFin;};
 };
 #endif /* OptMethod_hpp */

@@ -17,13 +17,13 @@
 #include "OptMethod.hpp"
 #include "StopCriterion.hpp"
 // ----------------
-class GradDesc : protected OptMethod {
+class GradDesc : public OptMethod {
 
 public:
     GradDesc(){};
     ~GradDesc(){};
     long double optimize() override {
-        return x0;
+        return 1;
     };
 };
 
