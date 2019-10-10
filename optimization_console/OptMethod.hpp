@@ -23,17 +23,16 @@ protected:
     //Area * area;
     //Function * f;
     double long *x0;
-    double long *xFin;
-    //long int nIter;
-    //?include? int dim;
+    double long *xFin{};
+    long int nIter = 0;
+    long double step = 10e-3;
+    int dim;
     //StopCriterion stop;
 public:
-    //!TODO: constructor for all data
     OptMethod(){};
-    OptMethod(double long *x0) : x0(x0) {
-    };
     ~OptMethod(){};
-    virtual long double optimize(Area * area, Function * function, StopCriterion * stopCrit) = 0;
-    long double GetXFin(){return *xFin;};
+    virtual double long optimize(Area * area, Function * function, StopCriterion * stopCrit) = 0;
+    virtual double long * getXFin() = 0;
+    void SetX0(double long * num){x0 = num;}; //TODO: deep!
 };
 #endif /* OptMethod_hpp */

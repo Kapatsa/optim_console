@@ -13,11 +13,10 @@
 
 class StopCriterion {
 public:
-    double long eps = 10e-4;
-    int N = 10e5;
+    double long eps = 1e-8;
+    int N = 3000;
     int dim;
     StopCriterion(){};
-    StopCriterion(int dim) : dim(dim) {};
     ~StopCriterion(){};
     virtual bool stop(double long * xCurrent, double long * xPrev,/*, double long *fCurr, double long *fPrev, double long *grad,*/int numOfIter) = 0;
 };

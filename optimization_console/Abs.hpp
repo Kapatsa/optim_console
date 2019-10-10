@@ -22,6 +22,9 @@ double long norm(double long *vector, int dim);
 class Abs : public StopCriterion {
 public:
     Abs(){};
+    Abs(int dimen){
+        dim = dimen;
+    };
     ~Abs(){};
     bool stop(double long * xCurrent, double long * xPrev,/*, double long *fCurr, double long *fPrev, double long *grad,*/int numOfIter) override {
         double long * diff = new double long [dim]{};
@@ -32,7 +35,11 @@ public:
             delete [] diff;
             return 0;
         }
-        else return 1;
+        else
+        {
+            delete [] diff;
+            return 1;
+        }
     };
 };
 
