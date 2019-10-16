@@ -16,6 +16,7 @@ double long GradDesc::optimize(Area * area, Function * func, StopCriterion * sto
     double long fPrev = func -> eval(xPrev);
     double long fCur{};
     double long * temp = new double long [dim];
+    double long * grad = new double long [dim];
     //double long * xCandidate = new double long [dim];
     //double long fCandidate{};
     
@@ -25,14 +26,15 @@ double long GradDesc::optimize(Area * area, Function * func, StopCriterion * sto
             temp[i] = xPrev[i];
         }
             for(int i = 0; i < dim; ++i){ //
-                xCur[i] = xPrev[i] - step * func -> grad(xPrev, i);
+                grad[i] = func -> grad(xPrev, i);
+                xCur[i] = xPrev[i] - step * grad[i];
                 //std::cout << xCur[i] << endl;
             }
             //std::cout << endl;
             fCur = func -> eval(xCur);
             for (int i = 0; i < dim; ++i ) xPrev[i] = xCur[i];
             fPrev = fCur;
-    } while ((stopCrit -> stop(xCur, temp, nIter)) || !(area -> isIn(xCur)));
+    } while ((stopCrit -> stop(xCur, temp, grad, nIter)) && (area -> isIn(xCur)));
    if (!(area -> isIn(xCur))){
         fCur = fPrev;
         for (int i = 0; i < dim; ++i) xCur[i] = xPrev[i];

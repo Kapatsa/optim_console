@@ -26,12 +26,12 @@ public:
         dim = dimen;
     };
     ~Abs(){};
-    bool stop(double long * xCurrent, double long * xPrev,/*, double long *fCurr, double long *fPrev, double long *grad,*/int numOfIter) override {
+    bool stop(double long * xCurrent, double long * xPrev,/*, double long *fCurr, double long *fPrev,*/ double long *grad ,int numOfIter) override {
         double long * diff = new double long [dim]{};
         for (int i = 0; i < dim; ++i){
-            diff[i] = xCurrent[i] - xPrev[i];
+            diff[i] = abs(xCurrent[i] - xPrev[i]);
         }
-        if (/*less than eps*/ (norm(diff, dim) < eps) || (numOfIter > N) ){
+        if ((norm(grad, dim) < eps) || (norm(diff, dim) < eps) || (numOfIter > N) ){
             delete [] diff;
             return 0;
         }

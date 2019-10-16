@@ -25,7 +25,7 @@ protected:
     double long *x0;
     double long *xFin{};
     long int nIter = 0;
-    long double step = 10e-3;
+    long double step = 10e-3; //local search (по направлению)
     int dim;
     //StopCriterion stop;
 public:
