@@ -19,6 +19,7 @@ public:
     StopCriterion(){};
     ~StopCriterion(){};
     virtual bool stop(double long * xCurrent, double long * xPrev,/*, double long *fCurr, double long *fPrev,*/ double long *grad, int numOfIter) = 0;
+    virtual bool checkGrad(double long *grad) = 0;
 };
 
 #endif /* StopCriterion_hpp */

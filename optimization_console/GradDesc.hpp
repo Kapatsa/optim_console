@@ -23,7 +23,7 @@ public:
     GradDesc(){};
     GradDesc(double long * xstart, int dimen){
         dim = dimen;
-        xFin = new double long [dim];
+        xFin = new double long [dim]{};
         x0 = new double long [dim];
         for (int i = 0; i < dim; ++i){
             x0[i] = xstart[i];

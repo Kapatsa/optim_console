@@ -28,10 +28,9 @@ using namespace std;
 int main(int argc, const char * argv[]) {
     
     //functions
-    f1 f1; // xe^y + xy (2 vars)
-    f2 f2; // 0.10*cos(10*(x^2 + y^2)) (2 vars)
-    f3 f3; // x^2 + y^2 + z^2 (3 vars)
-    Function * f = &f2;
+    f1 f1; // 0.10*cos(10*(x^2 + y^2)) (2 vars)
+    f2 f2; // x^2 + y^2 + z^2 (3 vars)
+    Function * f = &f1;
     int dim = f->dim;
     //areas
     double long range1[4] = {0,1,0,1  };
@@ -45,7 +44,7 @@ int main(int argc, const char * argv[]) {
     
     
     //starting points
-    double long x0_1[2] = {0,0.5};
+    double long x0_1[2] = {0.2,0.5};
     double long x0_2[2] = {0, 0};
     double long x0_3[3] = {0.5, 0.5, 0.5};
     //methods
@@ -61,7 +60,20 @@ int main(int argc, const char * argv[]) {
     StopCriterion * stop = &stop1;
     
     
-    cout << "min is: " << method -> optimize(area, f, stop) << endl;
+    //FUNCTION ONE
+    /*
+    f1 f1; // 0.10*cos(10*(x^2 + y^2)) (2 vars)
+    Function * f = &f1;
+    int dim = f->dim;
+    double long range1[4] = {0,1,0,1  };
+    RectArea area1(range1, 2);
+    double long x0_1[2] = {0.2,0.5};
+     //double long x0_1[2];
+     //cout << ""
+    */
+    
+    double long min = method -> optimize(area, f, stop);
+    cout << "min is: " << min << endl;
     cout << "argmin is: ";
     for (int i = 0; i < dim; ++i){
         cout << method -> getXFin()[i] << " ";

@@ -41,6 +41,10 @@ public:
             return 1;
         }
     };
+    bool checkGrad(double long *grad) override {
+        return (norm(grad, dim) > eps) ? 1 : 0;
+    };
+
 };
 
 #endif /* Abs_hpp */
