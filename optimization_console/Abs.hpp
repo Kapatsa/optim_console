@@ -25,7 +25,15 @@ public:
     Abs(int dimen){
         dim = dimen;
     };
+    Abs(int dimen, double epsilon, int iterations){
+        dim = dimen;
+        eps = epsilon;
+        N = iterations;
+    };
     ~Abs(){};
+    bool stop(int numOfIter, double long *grad) override{
+        return ((numOfIter < N) && (norm(grad, dim) > eps)) ;
+    }
     bool stop(double long * xCurrent, double long * xPrev,/*, double long *fCurr, double long *fPrev,*/ double long *grad ,int numOfIter) override {
         double long * diff = new double long [dim]{};
         for (int i = 0; i < dim; ++i){

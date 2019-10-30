@@ -21,6 +21,9 @@ class GradDesc : public OptMethod {
 
 public:
     GradDesc(){};
+    /**
+     * Constructor that sets the starting point and the dimension of method
+    **/
     GradDesc(double long * xstart, int dimen){
         dim = dimen;
         xFin = new double long [dim]{};
@@ -34,6 +37,7 @@ public:
     long double * getXFin() override {
         return xFin;
     };
+    
 };
 
 

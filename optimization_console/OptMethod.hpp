@@ -17,7 +17,10 @@
 #include "StopCriterion.hpp"
 #include "Abs.hpp"
 // ----------------
-
+/**
+ * Optimization Method Class
+ * Main objective of this class is to provide a virtual function optimize(), which currently is being overridden by the corresponding functions in GradDesc and Stochastic classes
+ **/
 class OptMethod {
 protected:
     //Area * area;
@@ -25,7 +28,7 @@ protected:
     double long *x0;
     double long *xFin{};
     long int nIter = 0;
-    long double step = 10e-3; //local search (по направлению)
+    long double step = 10e-3; 
     int dim;
     //StopCriterion stop;
 public:
@@ -33,6 +36,6 @@ public:
     ~OptMethod(){};
     virtual double long optimize(Area * area, Function * function, StopCriterion * stopCrit) = 0;
     virtual double long * getXFin() = 0;
-    void SetX0(double long * num){x0 = num;}; //TODO: deep!
+    void SetX0(double long * num){for (int i = 0; i < dim; ++i) x0[i] = num[i];};
 };
 #endif /* OptMethod_hpp */

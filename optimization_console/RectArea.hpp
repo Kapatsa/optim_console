@@ -33,6 +33,9 @@ public:
             }
         return temp;
     };
+    double long * getRange() override {
+        return range;
+    };
 };
 
 #endif /* RectArea_hpp */

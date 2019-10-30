@@ -14,7 +14,6 @@
 		25430859234A200000986D5A /* GradDesc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25430857234A200000986D5A /* GradDesc.cpp */; };
 		2543085C234A205800986D5A /* Stochastic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2543085A234A205800986D5A /* Stochastic.cpp */; };
 		2543085F234A206900986D5A /* StopCriterion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2543085D234A206900986D5A /* StopCriterion.cpp */; };
-		25430862234A20C800986D5A /* Iterative.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25430860234A20C800986D5A /* Iterative.cpp */; };
 		25430865234A210000986D5A /* Abs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25430863234A210000986D5A /* Abs.cpp */; };
 		25878B4A234CEAAE00C207A3 /* Function.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25878B48234CEAAE00C207A3 /* Function.cpp */; };
 		25878B50234E53D300C207A3 /* stuff.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25878B4E234E53D300C207A3 /* stuff.cpp */; };
@@ -47,8 +46,6 @@
 		2543085B234A205800986D5A /* Stochastic.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Stochastic.hpp; sourceTree = "<group>"; };
 		2543085D234A206900986D5A /* StopCriterion.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = StopCriterion.cpp; sourceTree = "<group>"; };
 		2543085E234A206900986D5A /* StopCriterion.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StopCriterion.hpp; sourceTree = "<group>"; };
-		25430860234A20C800986D5A /* Iterative.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Iterative.cpp; sourceTree = "<group>"; };
-		25430861234A20C800986D5A /* Iterative.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Iterative.hpp; sourceTree = "<group>"; };
 		25430863234A210000986D5A /* Abs.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Abs.cpp; sourceTree = "<group>"; };
 		25430864234A210000986D5A /* Abs.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Abs.hpp; sourceTree = "<group>"; };
 		25878B48234CEAAE00C207A3 /* Function.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Function.cpp; sourceTree = "<group>"; };
@@ -100,8 +97,6 @@
 				2543085B234A205800986D5A /* Stochastic.hpp */,
 				2543085D234A206900986D5A /* StopCriterion.cpp */,
 				2543085E234A206900986D5A /* StopCriterion.hpp */,
-				25430860234A20C800986D5A /* Iterative.cpp */,
-				25430861234A20C800986D5A /* Iterative.hpp */,
 				25430863234A210000986D5A /* Abs.cpp */,
 				25430864234A210000986D5A /* Abs.hpp */,
 				25878B48234CEAAE00C207A3 /* Function.cpp */,
@@ -172,7 +167,6 @@
 				2543085C234A205800986D5A /* Stochastic.cpp in Sources */,
 				25430850234A1E6200986D5A /* Area.cpp in Sources */,
 				25430853234A1FD100986D5A /* RectArea.cpp in Sources */,
-				25430862234A20C800986D5A /* Iterative.cpp in Sources */,
 				25430856234A1FE200986D5A /* OptMethod.cpp in Sources */,
 				2543085F234A206900986D5A /* StopCriterion.cpp in Sources */,
 				25878B4A234CEAAE00C207A3 /* Function.cpp in Sources */,
