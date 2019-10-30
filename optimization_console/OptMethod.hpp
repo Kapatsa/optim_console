@@ -38,11 +38,19 @@ public:
      * Virtual Optimization Function
      *
      * Optimizes a given function inside a bounded area
-     * @param area is a bounded area, @param func is a function, @param stopCrit is a chosen stop criterion
+     * @param area is a bounded area, @param function is a function, @param stopCrit is a chosen stop criterion
      * @return Minimal value is returned, argmin is set inside class
      **/
     virtual double long optimize(Area * area, Function * function, StopCriterion * stopCrit) = 0;
+    /**
+     * GetXFin
+     * @return Final iteration value is returned.
+     **/
     virtual double long * getXFin() = 0;
+    /**
+     * SetX0
+     * @param num vector of values of the same dimension as dim
+     **/
     void SetX0(double long * num){for (int i = 0; i < dim; ++i) x0[i] = num[i];};
 };
 #endif /* OptMethod_hpp */

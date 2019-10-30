@@ -38,6 +38,7 @@ public:
     };
     ~Stochastic(){delete [] x0; delete [] xFin;};
     long double optimize(Area * area, Function * function, StopCriterion * stopCrit) override;
+    
     long double * getXFin() override {
         return xFin;
     };
