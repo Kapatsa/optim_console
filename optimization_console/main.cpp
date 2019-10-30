@@ -68,7 +68,7 @@ int main(int argc, const char * argv[]) {
         
     area = &area1;
     stop = &stop1;
-    method = &stoc1;
+    method = &grad1;
     method -> SetX0(x0);
     
     double long min = method -> optimize(area, f, stop);

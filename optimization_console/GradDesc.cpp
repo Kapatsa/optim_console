@@ -15,7 +15,7 @@
  * Optimizes a given function inside a bounded area using the gradient descent method.
  * @param area is a bounded area, @param func is a function, @param stopCrit is a chosen stop criterion
  * @return Minimal value is returned, argmin is set inside class
-**/
+ **/
 double long GradDesc::optimize(Area * area, Function * func, StopCriterion * stopCrit){
     double long * xCur = new double long [dim];
     double long * xPrev = new double long [dim];
@@ -25,7 +25,7 @@ double long GradDesc::optimize(Area * area, Function * func, StopCriterion * sto
     double long * temp = new double long [dim];
     for(int i = 0; i < dim; ++i) temp[i] = x0[i];
     double long * grad = new double long [dim];
-
+    
     int j{};
     
     for(int i = 0; i < dim; ++i) grad[i] = func -> grad(x0, i);
@@ -35,7 +35,7 @@ double long GradDesc::optimize(Area * area, Function * func, StopCriterion * sto
             
             for(int i = 0; i < dim; ++i) xPrev[i] = xCur[i] ;
             for(int i = 0; i < dim; ++i) grad[i] = func -> grad(xPrev, i);
-
+            
             
             do {
                 ++nIter;

@@ -10,7 +10,11 @@
 #define StopCriterion_hpp
 
 #include <stdio.h>
-
+/**
+ * Stop Criterion Class
+ *
+ * Main objective of this class is to provide virtual functions stop() with different arguments, which currently is being overridden by the corresponding functions in Abs class
+ **/
 class StopCriterion {
 public:
     double long eps = 1e-8;

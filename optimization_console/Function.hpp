@@ -13,7 +13,11 @@
 #include <stdio.h>
 #include <cmath>
 using namespace std;
-
+/**
+ * Abstract Function Class
+ * 
+ * In order to add a function just create an instance of the Function class, input dimension and add the evaluate function, just as in examples provided.
+ **/
 class Function {
 public:
     int dim;

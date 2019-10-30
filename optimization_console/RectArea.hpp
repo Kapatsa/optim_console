@@ -11,7 +11,12 @@
 
 #include <stdio.h>
 #include "Area.hpp"
-
+/**
+ * Rectangle Area Class
+ *
+ * This class is an instance of Area class. It allows to declare rectangular areas in an n-dimensional space.
+ *
+ **/
 class RectArea : public Area {
 protected:
     int dim;

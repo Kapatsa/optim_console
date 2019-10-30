@@ -11,7 +11,12 @@
 std::mt19937 gen;
 std::uniform_real_distribution<> draw{0,1};
 using namespace std;
-
+/**
+ * Stochastic Optimization
+ * Optimizes a given function inside a bounded area using the stochastic method.
+ * @param area is a bounded area, @param func is a function, @param stopCrit is a chosen stop criterion
+ * @return Minimal value is returned, argmin is set inside class
+ **/
 long double Stochastic::optimize(Area * area, Function * func, StopCriterion * stopCrit) {
     gen.seed(1);
     nIter = 0;

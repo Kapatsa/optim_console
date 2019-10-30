@@ -17,8 +17,13 @@
 #include "OptMethod.hpp"
 #include "StopCriterion.hpp"
 // ----------------
-class GradDesc : public OptMethod {
 
+/**
+ * Gradient Descent Class
+ *
+ * Instance of OptMethod class, with a virtual function optimize()
+ **/
+class GradDesc : public OptMethod {
 public:
     GradDesc(){};
     /**

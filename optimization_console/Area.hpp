@@ -10,7 +10,11 @@
 #define Area_hpp
 
 #include <stdio.h>
-
+/**
+ * Area Class
+ *
+ * Class for some bounded area
+ **/
 class Area {
 
 public:
