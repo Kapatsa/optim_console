@@ -48,21 +48,28 @@ int main(int argc, const char * argv[]) {
     //double long x0_2[2] = {0, 0};
     //double long x0_3[3] = {0.5, 0.5, 0.5};
 
+    //WHEN CHANGING FUNCTIONS BEWARE OF AREA CHOICE
     Function * f = &f1;
     int dim = f->dim;
     double long * x0 = new double long [dim]{};
     
     RectArea * area;
+    if (dim == 2) area = &area1;
+    if (dim == 3) area = &area3;
+
     double long eps = 1e-5;
     int iter = 5000;
     Abs stop1(dim, eps, iter);
     StopCriterion * stop;
+    stop = &stop1;
     GradDesc grad1(x0, dim);
     Stochastic stoc1(x0, dim);
     OptMethod * method;
+
     char methodChoice = 'g';
     bool initialIn;
-    int finIter;
+    //int finIter;
+
     
     cout << endl << "OPTIMIZATION. CONSOLE EDITION. version 1.2." << endl;
     
@@ -73,8 +80,6 @@ int main(int argc, const char * argv[]) {
         cout << endl << "Please choose method (type g for gradient descent, s or smth else for stochastic): ";
         cin >> methodChoice;
         methodChoice == 'g' ? method = &grad1 : method = &stoc1;
-        area = &area1;
-        stop = &stop1;
         do {
             cout << endl << "Enter x_0 (" << dim << " numbers): ";
             for (int i = 0; i < dim; ++i){cin >> x0[i];}
