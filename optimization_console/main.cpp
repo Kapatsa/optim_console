@@ -53,10 +53,11 @@ int main(int argc, const char * argv[]) {
     int dim = f->dim;
     double long * x0 = new double long [dim]{};
     
-    RectArea * area;
+    RectArea * area = nullptr;
     if (dim == 2) area = &area1;
     if (dim == 3) area = &area3;
-
+    else area = &area4;
+    
     double long eps = 1e-5;
     int iter = 5000;
     Abs stop1(dim, eps, iter);

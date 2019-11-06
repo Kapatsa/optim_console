@@ -55,9 +55,9 @@ long double Stochastic::optimize(Area * area, Function * func, StopCriterion * s
         for( ; stopCrit -> stop(nIter, grad); ++nIter){
             for (int i = 0; i < dim; ++i){
                 temp[i] = (*u[i])(gen);
-                cout << temp[i] << " " ;
+                //cout << temp[i] << " " ;
             }
-            cout << endl;
+            //cout << endl;
             if( func -> eval(temp) < func -> eval(xCur) ){
                 for (int i = 0; i < dim; ++i){
                     xCur[i] = temp[i];

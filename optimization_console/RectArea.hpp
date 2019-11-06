@@ -20,6 +20,7 @@
 class RectArea : public Area {
 protected:
     int dim;
+    double long tolIn = 1e-10;
     double long *range; // [( , );( , );( , )]  // 4 when dim = 2, 6 when dim = 3
 public:
     RectArea(){};

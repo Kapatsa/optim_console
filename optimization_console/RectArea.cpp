@@ -17,7 +17,7 @@ RectArea::RectArea(double long *x, int dimen){
 bool RectArea::isIn(double long *point){
     bool temp = 1;
     for (int i = 0; i < dim; ++i){
-        if ((point[i] < range[2*i])||(point[i] > range[2*i+1])){
+        if ((point[i] <= range[2*i])||(point[i] >= range[2*i+1])){
             return temp = 0;
         }
     }
