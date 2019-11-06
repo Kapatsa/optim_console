@@ -29,19 +29,10 @@ public:
     /**
      * Constructor that sets the starting point and the dimension of method
     **/
-    GradDesc(double long * xstart, int dimen){
-        dim = dimen;
-        xFin = new double long [dim]{};
-        x0 = new double long [dim];
-        for (int i = 0; i < dim; ++i){
-            x0[i] = xstart[i];
-        }
-    };
+    GradDesc(double long * xstart, int dimen);
     ~GradDesc(){delete [] x0; delete [] xFin;};
     long double optimize(Area * area, Function * function, StopCriterion * stopCrit) override;
-    long double * getXFin() override {
-        return xFin;
-    };
+    long double * getXFin() override { return xFin; };
     
 };
 

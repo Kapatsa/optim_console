@@ -9,6 +9,20 @@
 #include "GradDesc.hpp"
 
 #include <iostream>
+/**
+ * GradDesc constructor
+ *
+ * Constructor which sets the starting point and the dimension
+ * @param xstart is a starting point, @param dimen is the dimension
+ **/
+GradDesc::GradDesc(double long * xstart, int dimen){
+    dim = dimen;
+    xFin = new double long [dim]{};
+    x0 = new double long [dim];
+    for (int i = 0; i < dim; ++i){
+        x0[i] = xstart[i];
+    }
+};
 
 /**
  * Gradient Descent Optimization
@@ -17,6 +31,7 @@
  * @return Minimal value is returned, argmin is set inside class
  **/
 double long GradDesc::optimize(Area * area, Function * func, StopCriterion * stopCrit){
+    nIter = 0;
     double long * xCur = new double long [dim];
     double long * xPrev = new double long [dim];
     for(int i = 0; i < dim; ++i) xCur[i] = x0[i];
@@ -36,12 +51,11 @@ double long GradDesc::optimize(Area * area, Function * func, StopCriterion * sto
             for(int i = 0; i < dim; ++i) xPrev[i] = xCur[i] ;
             for(int i = 0; i < dim; ++i) grad[i] = func -> grad(xPrev, i);
             
-            
             do {
-                ++nIter;
                 ++j;
                 for (int i = 0; i < dim; ++i) { xCur[i] -= j * step * grad[i]; };
                 if( func -> eval(xCur) < func -> eval(temp) ){
+                    ++nIter;
                     for (int i = 0; i < dim; ++i) temp[i] = xCur[i];
                     //for (int i = 0; i < dim; ++i) cout << temp[i] << " ";
                     //cout << endl;
@@ -51,6 +65,8 @@ double long GradDesc::optimize(Area * area, Function * func, StopCriterion * sto
             
             if (!(area -> isIn(temp))){ //if temp is outside, move back along the gradient and set it as the current one
                 for (int i = 0; i < dim; ++i) { xCur[i] += step * grad[i]; };
+                break;
+                //TODO: SOME FLAG IF OUTSIDE THE AREA
             }
             
             //if temp is inside all is well, make it current
@@ -63,7 +79,7 @@ double long GradDesc::optimize(Area * area, Function * func, StopCriterion * sto
     
     fCur = func -> eval(xCur);
     for (int i = 0; i < dim; ++i) xFin[i] = xCur[i];
-    cout << endl << "Num of iterations: " << nIter << endl;
+    //cout << endl << "Num of iterations: " << nIter << endl;
     
     
     delete [] xCur;
@@ -71,3 +87,5 @@ double long GradDesc::optimize(Area * area, Function * func, StopCriterion * sto
     delete [] temp;
     return fCur;
 };
+
+

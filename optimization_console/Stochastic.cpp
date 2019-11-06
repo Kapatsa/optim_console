@@ -11,6 +11,22 @@
 std::mt19937 gen;
 std::uniform_real_distribution<> draw{0,1};
 using namespace std;
+
+/**
+ * Stochastic constructor
+ *
+ * Constructor which sets the starting point and the dimension for the stochastic method
+ * @param xstart is a starting point, @param dimen is the dimension
+ **/
+Stochastic::Stochastic(double long * xstart, int dimen){
+    dim = dimen;
+    xFin = new double long [dim]{};
+    x0 = new double long [dim];
+    for (int i = 0; i < dim; ++i){
+        x0[i] = xstart[i];
+    }
+};
+
 /**
  * Stochastic Optimization
  * Optimizes a given function inside a bounded area using the stochastic method.
@@ -51,7 +67,7 @@ long double Stochastic::optimize(Area * area, Function * func, StopCriterion * s
     
     fCur = func -> eval(xCur);
     for (int i = 0; i < dim; ++i) xFin[i] = xCur[i];
-    cout << endl << "Num of iterations: " << nIter << endl;
+    //cout << endl << "Num of iterations: " << nIter << endl;
     
     delete [] xCur;
     delete [] temp;

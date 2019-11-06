@@ -21,21 +21,13 @@ using namespace std;
 class Function {
 public:
     int dim;
-    long double h = 1e-5;
+    long double h = 1e-9;
     Function(){};
     ~Function(){};
-    
+    virtual std::string getExpr() = 0;
     virtual long double eval(long double *x) = 0;
-    long double grad(long double *x, int varInd){
-        long double gr;
-        long double * x_h = new long double [dim];
-        for(int i = 0; i < dim; ++i) {i == varInd ? (x_h[i] = x[i] + h) : (x_h[i] = x[i]);}
-        gr = (eval(x_h) - eval(x))/h;
-        delete [] x_h;
-        return gr;
-    };
+    long double grad(long double *x, int varInd);
 };
-
 
 class f1: public Function{
 public:
@@ -43,9 +35,13 @@ public:
         dim = 2;
     };
     ~f1(){};
+    std::string getExpr() override {
+        return " f(x,y) = 0.1*cos(10*(x^2 + y^2)) ";
+    };
     long double eval(long double *x) override {
         return 0.10 * cos(10*(x[0]*x[0] + x[1]*x[1]));
     };
+    
 };
 
 class f2: public Function{
@@ -56,6 +52,9 @@ public:
     ~f2(){};
     long double eval(long double *x) override {
         return ((x[0]-0.5)*(x[0]-0.5) + x[1]*x[1] + x[2]*x[2] + 1);
+    };
+    std::string getExpr() override {
+        return " f(x, y, z) = (x-0.5)^2 + y^2 + z^2 + 1 ";
     };
 };
 

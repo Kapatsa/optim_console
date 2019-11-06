@@ -34,34 +34,11 @@ public:
     Abs(int dimen){
         dim = dimen;
     };
-    Abs(int dimen, double epsilon, int iterations){
-        dim = dimen;
-        eps = epsilon;
-        N = iterations;
-    };
+    Abs(int dimen, double epsilon, int iterations);
     ~Abs(){};
-    bool stop(int numOfIter, double long *grad) override{
-        return ((numOfIter < N) && (norm(grad, dim) > eps)) ;
-    }
-    bool stop(double long * xCurrent, double long * xPrev,/*, double long *fCurr, double long *fPrev,*/ double long *grad ,int numOfIter) override {
-        double long * diff = new double long [dim]{};
-        for (int i = 0; i < dim; ++i){
-            diff[i] = abs(xCurrent[i] - xPrev[i]);
-        }
-        if ((norm(grad, dim) < eps) || (norm(diff, dim) < eps) || (numOfIter > N) ){
-            delete [] diff;
-            return 0;
-        }
-        else
-        {
-            delete [] diff;
-            return 1;
-        }
-    };
-    bool checkGrad(double long *grad) override {
-        return (norm(grad, dim) > eps) ? 1 : 0;
-    };
-
+    bool stop(int numOfIter, double long *grad) override;
+    bool stop(double long * xCurrent, double long * xPrev,/*, double long *fCurr, double long *fPrev,*/ double long *grad ,int numOfIter) override;
+    bool checkGrad(double long *grad) override;
 };
 
 #endif /* Abs_hpp */

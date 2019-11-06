@@ -44,9 +44,9 @@ int main(int argc, const char * argv[]) {
     RectArea area3(range3, 3);
     RectArea area4(range4, 3);
     //starting points
-    double long x0_1[2] = {0.01,0.01};
-    double long x0_2[2] = {0, 0};
-    double long x0_3[3] = {0.5, 0.5, 0.5};
+    //double long x0_1[2] = {0.01,0.01};
+    //double long x0_2[2] = {0, 0};
+    //double long x0_3[3] = {0.5, 0.5, 0.5};
 
     Function * f = &f1;
     int dim = f->dim;
@@ -54,33 +54,47 @@ int main(int argc, const char * argv[]) {
     
     RectArea * area;
     double long eps = 1e-5;
-    long int iter = 5000;
+    int iter = 5000;
     Abs stop1(dim, eps, iter);
     StopCriterion * stop;
     GradDesc grad1(x0, dim);
     Stochastic stoc1(x0, dim);
     OptMethod * method;
+    char methodChoice = 'g';
+    bool initialIn;
+    int finIter;
+    
+    cout << endl << "OPTIMIZATION. CONSOLE EDITION. version 1.2." << endl;
+    
+    cout << endl << "The function chosen is" << f -> getExpr() << endl;
+    //TODO:: The area is ...
     
     do {
-    cout << endl << "Enter x_0 (" << dim << " numbers): ";
-    for (int i = 0; i < dim; ++i){cin >> x0[i];}
-    //TODO:: CHECK X0 OUT OF BOUNDS
+        cout << endl << "Please choose method (type g for gradient descent, s or smth else for stochastic): ";
+        cin >> methodChoice;
+        methodChoice == 'g' ? method = &grad1 : method = &stoc1;
+        area = &area1;
+        stop = &stop1;
+        do {
+            cout << endl << "Enter x_0 (" << dim << " numbers): ";
+            for (int i = 0; i < dim; ++i){cin >> x0[i];}
+            initialIn = area -> isIn(x0);
+            if (!initialIn) cout << endl << "Initial guess out of bounds. Try again.";
+        } while(!initialIn);
+        method -> SetX0(x0);
         
-    area = &area1;
-    stop = &stop1;
-    method = &grad1;
-    method -> SetX0(x0);
-    
-    double long min = method -> optimize(area, f, stop);
-    cout << "min is: " << min << endl;
-    cout << "argmin is: ";
-    for (int i = 0; i < dim; ++i){
-        cout << method -> getXFin()[i] << " ";
-    }
-    cout << endl;
-    
-    cout << "continue? (y/n): ";
-    cin >> ans;
+        double long min = method -> optimize(area, f, stop);
+        cout << "min is: " << min << endl;
+        cout << "argmin is: ";
+        for (int i = 0; i < dim; ++i){
+            cout << method -> getXFin()[i] << " ";
+        }
+        cout << endl << "Number of iterations: " << method -> GetnIter();
+        cout << endl;
+        
+        
+        cout << "continue? (y/n): ";
+        cin >> ans;
     } while(ans == 'y');
     
     

@@ -24,23 +24,15 @@ protected:
 public:
     RectArea(){};
     ~RectArea(){ delete [] range; };
-    RectArea(double long *x, int dimen){
-        dim = dimen;
-        range = new double long [2*dim];
-        for (int i = 0; i < 2*dim; ++i) range[i] = x[i];
-    };
-    bool isIn(double long *point) override {
-        bool temp = 1;
-            for (int i = 0; i < dim; ++i){
-                if ((point[i] < range[2*i])||(point[i] > range[2*i+1])){
-                   return temp = 0;
-                }
-            }
-        return temp;
-    };
-    double long * getRange() override {
-        return range;
-    };
+    RectArea(double long *x, int dimen);
+    /**
+     * Is in function
+     *
+     * This function tells if a given point @param point lies inside the rectanlular area, defined bu the class
+     * @return 0 if outside, 1 if inside
+     **/
+    bool isIn(double long *point) override;
+    double long * getRange() override { return range; };
 };
 
 #endif /* RectArea_hpp */
