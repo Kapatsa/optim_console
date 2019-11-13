@@ -27,6 +27,8 @@ Stochastic::Stochastic(double long * xstart, int dimen){
     }
 };
 
+//(!!!) TODO: MAKE LOCAL OPTIMIZATION
+
 /**
  * Stochastic Optimization
  * Optimizes a given function inside a bounded area using the stochastic method.

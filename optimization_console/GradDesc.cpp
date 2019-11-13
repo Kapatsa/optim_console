@@ -44,6 +44,7 @@ double long GradDesc::optimize(Area * area, Function * func, StopCriterion * sto
     int j{};
     
     for(int i = 0; i < dim; ++i) grad[i] = func -> grad(x0, i);
+    
     if ((stopCrit -> checkGrad(grad))){
         do {
             j = 0;

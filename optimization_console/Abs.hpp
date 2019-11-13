@@ -16,12 +16,7 @@
 //#include "stuff.hpp"
 #include "StopCriterion.hpp"
 //-------------
-/**
- * Norm Function
- *
- * Calculates the norm of a given vector
- **/
-double long norm(double long *vector, int dim);
+
 
 /**
  * Abs Class

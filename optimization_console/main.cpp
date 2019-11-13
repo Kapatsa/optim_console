@@ -68,6 +68,13 @@ int main(int argc, const char * argv[]) {
     OptMethod * method;
 
     char methodChoice = 'g';
+    
+    //(!!)TODO: ADD INITIAL SETTINGS
+    // 1. N FOR STEP PARAMETER
+    // 2. MAX NUM OF ITERATIONS
+    // 3. STOP CRITERION
+    
+    
     bool initialIn;
     //int finIter;
 

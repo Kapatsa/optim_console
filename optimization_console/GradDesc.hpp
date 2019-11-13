@@ -16,6 +16,7 @@
 #include "Function.hpp"
 #include "OptMethod.hpp"
 #include "StopCriterion.hpp"
+#include "opt_tools.hpp"
 // ----------------
 
 /**

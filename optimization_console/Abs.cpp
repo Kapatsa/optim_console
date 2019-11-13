@@ -7,20 +7,7 @@
 //
 
 #include "Abs.hpp"
-/**
- * norm function
- *
- * Returns the simple Euclidean norm of a given vector
- *
- * @param vector for the vector array, @param dim for dimension
- **/
-double long norm(double long *vector, int dim){
-double long dist = 0;
-for (int i = 0; i < dim; ++i){
-    dist += vector[i]*vector[i];
-}
-return sqrt(dist);
-};
+#include "opt_tools.hpp"
 
 /**
  * Abs constructor

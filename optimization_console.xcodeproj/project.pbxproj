@@ -16,6 +16,7 @@
 		2543085F234A206900986D5A /* StopCriterion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2543085D234A206900986D5A /* StopCriterion.cpp */; };
 		25430865234A210000986D5A /* Abs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25430863234A210000986D5A /* Abs.cpp */; };
 		25878B4A234CEAAE00C207A3 /* Function.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25878B48234CEAAE00C207A3 /* Function.cpp */; };
+		25ED277D237C7D840044F1F1 /* opt_tools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 25ED277B237C7D840044F1F1 /* opt_tools.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -49,6 +50,8 @@
 		25430864234A210000986D5A /* Abs.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Abs.hpp; sourceTree = "<group>"; };
 		25878B48234CEAAE00C207A3 /* Function.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Function.cpp; sourceTree = "<group>"; };
 		25878B49234CEAAE00C207A3 /* Function.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Function.hpp; sourceTree = "<group>"; };
+		25ED277B237C7D840044F1F1 /* opt_tools.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = opt_tools.cpp; sourceTree = "<group>"; };
+		25ED277C237C7D840044F1F1 /* opt_tools.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = opt_tools.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +101,8 @@
 				25430864234A210000986D5A /* Abs.hpp */,
 				25878B48234CEAAE00C207A3 /* Function.cpp */,
 				25878B49234CEAAE00C207A3 /* Function.hpp */,
+				25ED277B237C7D840044F1F1 /* opt_tools.cpp */,
+				25ED277C237C7D840044F1F1 /* opt_tools.hpp */,
 			);
 			path = optimization_console;
 			sourceTree = "<group>";
@@ -159,6 +164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				25430865234A210000986D5A /* Abs.cpp in Sources */,
+				25ED277D237C7D840044F1F1 /* opt_tools.cpp in Sources */,
 				2543085C234A205800986D5A /* Stochastic.cpp in Sources */,
 				25430850234A1E6200986D5A /* Area.cpp in Sources */,
 				25430853234A1FD100986D5A /* RectArea.cpp in Sources */,
