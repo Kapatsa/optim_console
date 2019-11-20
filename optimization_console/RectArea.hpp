@@ -22,7 +22,7 @@ protected:
     double long tolIn = 1e-10;
     double long *range; // [( , );( , );( , )]  // 4 when dim = 2, 6 when dim = 3
 public:
-    int dim;
+    //int dim;
     RectArea(){};
     ~RectArea(){ delete [] range; };
     RectArea(double long *x, int dimen);

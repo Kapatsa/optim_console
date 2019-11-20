@@ -18,6 +18,7 @@
 class Area {
 
 public:
+    int dim;
     Area(){};
     ~Area(){};
     virtual bool isIn(double long *point) = 0;

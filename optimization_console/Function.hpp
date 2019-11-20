@@ -58,4 +58,19 @@ public:
     };
 };
 
+class f3: public Function{
+public:
+    f3(){
+        dim = 2;
+    };
+    ~f3(){};
+    std::string getExpr() override {
+        return " f(x,y) = x + y ";
+    };
+    long double eval(long double *x) override {
+        return x[0]+x[1];
+    };
+    
+};
+
 #endif /* Function_hpp */

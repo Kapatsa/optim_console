@@ -17,7 +17,7 @@
  **/
 class StopCriterion {
 public:
-    double long eps = 1e-8;
+    double long eps = 1e-8; //minimal eps for gradient
     int N = 5000;
     int dim;
     StopCriterion(){};

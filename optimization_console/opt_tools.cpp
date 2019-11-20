@@ -22,7 +22,7 @@ double long norm(double long *vector, int dim){
     return sqrt(dist);
 };
 
-double long terOpt(Function *f, double long *xCur, double long *grad, double long lambdaMax, double long eps){
+double long terOpt(Function *f, double long *left, double long *right, double long eps){
     int dim = f -> dim;
     double long *lCur = new double long [dim];
     double long *rCur = new double long [dim];
@@ -31,12 +31,8 @@ double long terOpt(Function *f, double long *xCur, double long *grad, double lon
     double long *diff = new double long [dim];
     
     for(int i = 0; i < dim; ++i){
-        lCur[i] = xCur[i];
-    }
-    for(int i = 0; i < dim; ++i){
-        rCur[i] = xCur[i] + grad[i]*lambdaMax;
-    }
-    for(int i = 0; i < dim; ++i){
+        lCur[i] = left[i];
+        rCur[i] = right[i];
         diff[i] = rCur[i] - lCur[i];
     }
     
@@ -47,6 +43,15 @@ double long terOpt(Function *f, double long *xCur, double long *grad, double lon
             lCand[i] = (2*lCur[i] + rCur[i])/3;
             rCand[i] = (lCur[i] + 2*rCur[i])/3;
         }
+        
+        /*
+        cout << "intervals:" << endl;
+        print(lCur, dim);
+        print(lCand, dim);
+        print(rCand, dim);
+        print(rCur, dim);
+        cout << endl;
+        */
         
         //compare f values at new nodes, assign new nodes
         if( f->eval(lCand) < f->eval(rCand) ){
@@ -68,22 +73,25 @@ double long terOpt(Function *f, double long *xCur, double long *grad, double lon
         }
         
     }
-    
     //out of the cycle, make some assignments
     //xCur is our new optimal point
     for (int i = 0; i < dim; ++i){
-        xCur[i] = (lCur[i] + rCur[i])/2;
+        left[i] = (lCur[i] + rCur[i])/2;
     }
+    
+    //cout << endl << "Candidate:";
+    //print(left, dim);
+    //cout << endl;
     
     delete [] lCur;
     delete [] rCur;
     delete [] lCand;
     delete [] rCand;
-    delete [] diff;
-    return f -> eval(xCur);
+    delete [] diff; 
+    return f -> eval(left);
 };
 
-double long lambdaMax(RectArea * rect, double long *xCur, double long *grad){
+double long lambdaMax(Area * rect, double long *xCur, double long *grad){
     int dim = rect -> dim;
     
     double long alphaCur{};
@@ -91,13 +99,25 @@ double long lambdaMax(RectArea * rect, double long *xCur, double long *grad){
     
     for (int i = 0; i < dim; ++i) {
         if (grad[i] > 0){
-            alphaCand = (rect->getRange()[2*i + 1]-xCur[i])/grad[i];
+            alphaCand = ((rect->getRange()[2*i+1]) - xCur[i])/grad[i];
         }
-        else {
-            alphaCand = (rect->getRange()[2*i]-xCur[i])/grad[i];
+        else if (grad[i] < 0) {
+            alphaCand = ((rect->getRange()[2*i]) - xCur[i])/grad[i];
+            //std::cout << " (" << (rect->getRange()[2*i]) << " - " << xCur[i] << ")/(" << grad[i] << ")" << endl;
+            //std::cout << "Alpha now:" << alphaCand << endl;
         }
+        
         if (i == 0) alphaCur = alphaCand;
         else if ( alphaCand < alphaCur ) alphaCur = alphaCand;
     }
     return alphaCur;
+}
+
+void print(double long *x, int dim){
+    std::cout << " (";
+    for (int i = 0; i < dim; ++i){
+        std::cout << x[i];
+        if (i != dim-1) std::cout << ", ";
+    };
+    std::cout << "), ";
 }

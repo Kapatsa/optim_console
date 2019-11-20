@@ -16,8 +16,9 @@
 #include "RectArea.hpp"
 
 double long norm(double long *vector, int dim);
-double long terOpt(Function *f, double long *xCur, double long *grad, double long lambdaMax, double long eps);
-double long lambdaMax(RectArea * rect, double long *xCur, double long *grad);
+double long terOpt(Function *f, double long *left, double long *right, double long eps);
+double long lambdaMax(Area * rect, double long *xCur, double long *grad);
+void print(double long *x, int dim);
 void eq(double long * x, double long * y, int dim);
 
 #endif /* opt_tools_hpp */

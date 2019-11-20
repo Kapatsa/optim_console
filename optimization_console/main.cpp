@@ -32,6 +32,7 @@ int main(int argc, const char * argv[]) {
     //functions
     f1 f1; // 0.10*cos(10*(x^2 + y^2)) (2 vars)
     f2 f2; // x^2 + y^2 + z^2 (3 vars)
+    f3 f3;
 
     
     //areas
@@ -56,8 +57,7 @@ int main(int argc, const char * argv[]) {
     RectArea * area = nullptr;
     if (dim == 2) area = &area1;
     if (dim == 3) area = &area3;
-    else area = &area4;
-    
+
     double long eps = 1e-5;
     int iter = 5000;
     Abs stop1(dim, eps, iter);
@@ -74,10 +74,16 @@ int main(int argc, const char * argv[]) {
     // 2. MAX NUM OF ITERATIONS
     // 3. STOP CRITERION
     
+    {
+    //TEST
+    
+    //long double gradt[2] = {-0.09, -0.191};
+    //long double xcurt[2] = {0.1, 0.2};
+    //cout << "Lambda is" << lambdaMax(area, xcurt, gradt) << endl;
+    
+    } //TEST FOR BOUNDARY LAMBDA CALCULATION
     
     bool initialIn;
-    //int finIter;
-
     
     cout << endl << "OPTIMIZATION. CONSOLE EDITION. version 1.2." << endl;
     
