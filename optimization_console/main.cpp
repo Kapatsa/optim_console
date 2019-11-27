@@ -32,7 +32,7 @@ int main(int argc, const char * argv[]) {
     //functions
     f1 f1; // 0.10*cos(10*(x^2 + y^2)) (2 vars)
     f2 f2; // x^2 + y^2 + z^2 (3 vars)
-    f3 f3;
+    f3 f3; // х + y (2 vars)
 
     
     //areas

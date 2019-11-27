@@ -133,7 +133,7 @@
 		2543083B2349F34100986D5A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = "David Kapatsa";
 				TargetAttributes = {
 					254308422349F34100986D5A = {
@@ -147,6 +147,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 2543083A2349F34100986D5A;
 			productRefGroup = 254308442349F34100986D5A /* Products */;
@@ -291,6 +292,7 @@
 		2543084B2349F34100986D5A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -299,6 +301,7 @@
 		2543084C2349F34100986D5A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

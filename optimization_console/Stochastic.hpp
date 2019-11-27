@@ -13,17 +13,25 @@
 #include <fstream>
 #include <random>
 #include <ctime>
-
 // ----------------
 #include "OptMethod.hpp"
 // ----------------
-
+/**
+* Stochastic Class
+* Instance of OptMethod class, with a virtual function optimize()
+ * @param localProbability defines a discrete distribution, which directs algorithm to switch between global and local search with the specified probability
+ * @param deltaInit is initial ball size for local search ,
+ * @param iterScale is a scaling parameter for the local ball (0<iterScale<=1), which is used each time the local ball search gives a new better approximation
+**/
 class Stochastic : public OptMethod{
 public:
+    long double localProbability;
+    long double deltaInit;
+    long double iterScale;
     Stochastic(){};
-    Stochastic(double long * xstart, int dimen);
+    Stochastic(double long * xstart, int dimen, long double localProb = 0.5, long double deltaIn = 0.1, long double iterSc = 0.9);
     ~Stochastic(){delete [] x0; delete [] xFin;};
-    long double optimize(Area * area, Function * function, StopCriterion * stopCrit) override;
+    long double optimize(Area * area, Function * func, StopCriterion * stopCrit) override;
     long double * getXFin() override { return xFin;};
 };
 

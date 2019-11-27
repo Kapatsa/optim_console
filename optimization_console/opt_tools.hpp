@@ -20,5 +20,6 @@ double long terOpt(Function *f, double long *left, double long *right, double lo
 double long lambdaMax(Area * rect, double long *xCur, double long *grad);
 void print(double long *x, int dim);
 void eq(double long * x, double long * y, int dim);
+//double long * randomInside(Area * rect);
 
 #endif /* opt_tools_hpp */
