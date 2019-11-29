@@ -121,3 +121,38 @@ void print(double long *x, int dim){
     };
     std::cout << "), ";
 }
+/**
+* randomInside Function
+ * This function finds a random point using the specified uniform real distribution and a generator
+ * @param point is the pointer to where the random value will be stored
+ * @param dim is the dimension
+ * @param u is the pointer to the array of distributions
+ * @param gen is the reference to the mt19937 generator
+*/
+double long * randomInside(double long * point, int dim, std::uniform_real_distribution<> ** u, std::mt19937 &gen)
+{
+    for(int i = 0; i < dim; ++i) point[i] = (*u[i])(gen);
+    return point;
+}
+
+/**
+* rangeAroundEps Function
+ * This function creates an array of ranges for the epsilon neighborhood (in infinity metric) of a specified point. It takes into account the global bounds if they are specified. It can be used to create areas.
+ * @param epsRange is the array, which will store range values
+ * @param point is the point
+ * @param eps is the epsilon neighborhood of the
+ * @param dim is the dimension
+ * @param globalBounds is the global
+*/
+double long * rangeAroundEps(double long * epsRange, double long * point, double long eps, int dim, double long * globalBounds){
+    for(int i = 0; i < dim; ++i){
+        epsRange[2*i] = max(globalBounds[2*i], point[i] - eps);
+        epsRange[2*i+1] = min(globalBounds[2*i+1], point[i] + eps);
+    }
+    return epsRange;
+}
+
+
+
+
+

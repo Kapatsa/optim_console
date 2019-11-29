@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <cmath>
+#include <random>
 #include "Function.hpp"
 #include "Area.hpp"
 #include "RectArea.hpp"
@@ -20,6 +21,7 @@ double long terOpt(Function *f, double long *left, double long *right, double lo
 double long lambdaMax(Area * rect, double long *xCur, double long *grad);
 void print(double long *x, int dim);
 void eq(double long * x, double long * y, int dim);
-//double long * randomInside(Area * rect);
+double long * randomInside(double long * point, int dim, std::uniform_real_distribution<> ** u, std::mt19937 &gen);
+double long * rangeAroundEps(double long * epsRange, double long * point, double long eps, int dim, double long * globalBounds = 0);
 
 #endif /* opt_tools_hpp */

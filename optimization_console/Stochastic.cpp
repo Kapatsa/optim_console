@@ -7,6 +7,7 @@
 //
 
 #include "Stochastic.hpp"
+#include "opt_tools.hpp"
 
 std::mt19937 gen;
 std::uniform_real_distribution<> draw{0,1};
@@ -40,15 +41,31 @@ Stochastic::Stochastic(double long * xstart, int dimen, long double localProb, l
  * @param stopCrit is a chosen stop criterion,
  * @return Minimal value is returned, argmin is set inside class
  **/
-long double Stochastic::optimize(Area * area, Function * func, StopCriterion * stopCrit) {
+double long Stochastic::optimize(Area * area, Function * func, StopCriterion * stopCrit) {
     gen.seed(1);
     nIter = 0;
     int dim = func -> dim;
+    
+    //CREATING A DISTRIBUTION FOR THE GLOBAL AREA
     std::uniform_real_distribution<> ** u  = new std::uniform_real_distribution<>*[dim];
     for (int i = 0; i < dim; ++i){
         u[i] = new std::uniform_real_distribution<>{static_cast<double>(area -> getRange()[2*i]), static_cast<double>(area -> getRange()[2*i+1])} ;
     }
     std::discrete_distribution<int> d {static_cast<double>(localProbability),static_cast<double>(1-localProbability)};
+    
+    // randInside TEST
+    {
+        //double long * pt = new double long [dim];
+        //for (int i = 0; i < 100; ++i) randomInside(pt, dim, u, gen);
+        //delete [] pt;
+    }
+    
+    // rangeAroundEps TEST
+    {
+        //double long * localRange = new double long[2*dim];
+        //print(rangeAroundEps(localRange, x0, 0.2, dim, area->getRange()), 2*dim);
+        //delete [] localRange;
+    }
     
     /*
     TODO: Check that discrete works properly from the beginning
