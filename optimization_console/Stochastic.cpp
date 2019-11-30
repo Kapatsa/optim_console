@@ -59,14 +59,13 @@ double long Stochastic::optimize(Area * area, Function * func, StopCriterion * s
         //for (int i = 0; i < 100; ++i) randomInside(pt, dim, u, gen);
         //delete [] pt;
     }
-    
     // rangeAroundEps TEST
     {
         //double long * localRange = new double long[2*dim];
         //print(rangeAroundEps(localRange, x0, 0.2, dim, area->getRange()), 2*dim);
         //delete [] localRange;
     }
-    
+    // discrete distribution TEST
     /*
     TODO: Check that discrete works properly from the beginning
     {
@@ -78,9 +77,49 @@ double long Stochastic::optimize(Area * area, Function * func, StopCriterion * s
     }
     */
     
-    double long * xCur = new double long [dim];
-    for(int i = 0; i < dim; ++i) xCur[i] = x0[i];
-    double long fCur = func -> eval(xCur);
+    
+    double long * xLocal = new double long [dim];
+    for(int i = 0; i < dim; ++i) xLocal[i] = x0[i];
+    double long fLocal = func -> eval(xLocal);
+    
+    double long * xGlobal = new double long [dim];
+    double long fGlobal;
+    
+    double long * xBest = new double long [dim];
+    double long * grad = new double long [dim];
+    
+
+    double long currentDelta;
+    
+    
+    //TODO:: HERE IS THE LATEST CHANGE
+    for( ; stopCrit -> stop(nIter, grad); ++nIter){
+     
+        switch (d(gen)) {
+            case 0: //LOCAL
+                //create new distributions
+                //
+                
+                
+                //if there is improvement, decrease delta
+                break;
+                
+            case 1: //GLOBAL
+                
+                break;
+                
+            default:
+                break;
+        }
+        
+        
+        
+    }
+    
+    
+   /*
+    
+    
     double long * temp = new double long [dim];
     //for(int i = 0; i < dim; ++i) temp[i] = x0[i];
     double long * grad = new double long [dim];
@@ -116,7 +155,11 @@ double long Stochastic::optimize(Area * area, Function * func, StopCriterion * s
     }
     delete [] u;
     
-    return fCur;
+    */
+    
+    return xBest;
+    
+    
 };
 
 /*long double Stochastic::optimize(Area * area, Function * func, StopCriterion * stopCrit) {
