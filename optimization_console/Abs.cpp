@@ -63,3 +63,16 @@ bool Abs::stop(double long * xCurrent, double long * xPrev,/*, double long *fCur
 bool Abs::checkGrad(double long *grad){
     return (norm(grad, dim) > eps) ? 1 : 0;
 };
+
+/**
+* Stop Function
+*
+* Stop Criterion Function makes sure that the stop criterion is satisfied so that the algorithm can stop
+*
+* @param numOfIter is the current number of iterations,
+ *@param itersAfterLastSuccess is the current number of
+* @return 0 if one of the stop criterions is satisfied, 1 if not.
+**/
+bool Abs::stop(int numOfIter, int itersAfterLastSuccess){
+    return (numOfIter < N) && (itersAfterLastSuccess < maxItersAfterLastSuccess);
+};

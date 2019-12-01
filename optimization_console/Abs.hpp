@@ -33,6 +33,7 @@ public:
     ~Abs(){};
     bool stop(int numOfIter, double long *grad) override;
     bool stop(double long * xCurrent, double long * xPrev,/*, double long *fCurr, double long *fPrev,*/ double long *grad ,int numOfIter) override;
+    bool stop(int numOfIter, int itersAfterLastSuccess) override;
     bool checkGrad(double long *grad) override;
 };
 

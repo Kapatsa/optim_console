@@ -121,19 +121,6 @@ void print(double long *x, int dim){
     };
     std::cout << "), ";
 }
-/**
-* randomInside Function
- * This function finds a random point using the specified uniform real distribution and a generator
- * @param point is the pointer to where the random value will be stored
- * @param dim is the dimension
- * @param u is the pointer to the array of distributions
- * @param gen is the reference to the mt19937 generator
-*/
-double long * randomInside(double long * point, int dim, std::uniform_real_distribution<> ** u, std::mt19937 &gen)
-{
-    for(int i = 0; i < dim; ++i) point[i] = (*u[i])(gen);
-    return point;
-}
 
 /**
 * rangeAroundEps Function
