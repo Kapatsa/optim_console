@@ -50,7 +50,7 @@ int main(int argc, const char * argv[]) {
     //double long x0_3[3] = {0.5, 0.5, 0.5};
 
     //WHEN CHANGING FUNCTIONS BEWARE OF AREA CHOICE
-    Function * f = &f1;
+    Function * f = &f3;
     int dim = f->dim;
     double long * x0 = new double long [dim]{};
     

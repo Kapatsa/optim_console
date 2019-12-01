@@ -17,11 +17,11 @@
 #include "OptMethod.hpp"
 // ----------------
 /**
-* Stochastic Class
+* \class Stochastic Class
 * Instance of OptMethod class, with a virtual function optimize()
- * @param localProbability defines a discrete distribution, which directs algorithm to switch between global and local search with the specified probability
- * @param deltaInit is initial ball size for local search ,
- * @param iterScale is a scaling parameter for the local ball (0<iterScale<=1), which is used each time the local ball search gives a new better approximation
+ * @name localProbability defines a discrete distribution, which directs algorithm to switch between global and local search with the specified probability
+ * @name deltaInit is initial ball size for local search ,
+ * @name iterScale is a scaling parameter for the local ball (0<iterScale<=1), which is used each time the local ball search gives a new better approximation
 **/
 class Stochastic : public OptMethod{
 public:
