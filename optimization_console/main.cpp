@@ -10,6 +10,7 @@
 #include <fstream>
 #include <random>
 #include <ctime>
+#include <limits>
 
 //---------------
 #include "Area.hpp"
@@ -22,21 +23,23 @@
 #include "Function.hpp"
 //---------------
 
+//TODO:: remove namespace std
 using namespace std;
 
 int main(int argc, const char * argv[]) {
     
     char ans = 'y';
     
-
+    
     //functions
     f1 f1; // 0.10*cos(10*(x^2 + y^2)) (2 vars)
     f2 f2; // x^2 + y^2 + z^2 (3 vars)
     f3 f3; // х + y (2 vars)
-
-    
+    f4 f4; // (1-x)^2 + 100 * (y-x^2)^2 (2 vars)
+    int numberOfFunctions = 4;
+    int dim;
     //areas
-    double long range1[4] = {0,1,0,1  };
+    double long range1[4] = {0,2,0,2  };
     double long range2[4] = {-1,1,-1,1};
     double long range3[6] = {0,1,0,1,0,1   };
     double long range4[6] = {-1,1,-1,1,-1,1};
@@ -44,35 +47,25 @@ int main(int argc, const char * argv[]) {
     RectArea area2(range2, 2);
     RectArea area3(range3, 3);
     RectArea area4(range4, 3);
-    //starting points
-    //double long x0_1[2] = {0.01,0.01};
-    //double long x0_2[2] = {0, 0};
-    //double long x0_3[3] = {0.5, 0.5, 0.5};
 
     //WHEN CHANGING FUNCTIONS BEWARE OF AREA CHOICE
-    Function * f = &f3;
-    int dim = f->dim;
-    double long * x0 = new double long [dim]{};
+    Function * f = &f1;
+    double long * x0{};
     
     RectArea * area = nullptr;
-    if (dim == 2) area = &area1;
-    if (dim == 3) area = &area3;
-
-    double long eps = 1e-5;
-    int iter = 5000;
-    Abs stop1(dim, eps, iter);
+    
+    //TODO:: set eps & noOfIters & MaxDifference
+    //double long eps = 1e-5;
+    //int iter = 5000;
+    Abs stop1;
     StopCriterion * stop;
     stop = &stop1;
-    GradDesc grad1(x0, dim);
-    Stochastic stoc1(x0, dim);
+    GradDesc grad1;
+    Stochastic stoc1;
     OptMethod * method;
 
     char methodChoice = 'g';
-    
-    //(!!)TODO: ADD INITIAL SETTINGS
-    // 1. N FOR STEP PARAMETER
-    // 2. MAX NUM OF ITERATIONS
-    // 3. STOP CRITERION
+    int functionChoice{};
     
     {
     //TEST
@@ -85,22 +78,85 @@ int main(int argc, const char * argv[]) {
     
     bool initialIn;
     
-    cout << endl << "OPTIMIZATION. CONSOLE EDITION. version 1.2." << endl;
+    cout << endl << "OPTIMIZATION. CONSOLE EDITION. version 1.3." << endl;
     
-    cout << endl << "The function chosen is" << f -> getExpr() << endl;
     //TODO:: The area is ...
     
     do {
-        cout << endl << "Please choose method (type g for gradient descent, s or smth else for stochastic): ";
-        cin >> methodChoice;
+        cout << endl  << "Please choose a function by typing its number:" << endl;
+       {cout << "1. " << f1.getExpr() << endl;
+        cout << "2. " << f2.getExpr() << endl;
+        cout << "3. " << f3.getExpr() << endl;
+        cout << "4. " << f4.getExpr() << endl;} //functions list
+        
+        do {
+            cout  << "Function number: ";
+            cin >> functionChoice;
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            if ((functionChoice < 1)
+                ||
+                (functionChoice > numberOfFunctions)){
+                cout << "Oh, very funny. Please try again:";
+            }
+            else {
+                switch (functionChoice) {
+                    case 1:
+                        f = &f1;
+                        break;
+                    case 2:
+                        f = &f2;
+                        break;
+                    case 3:
+                        f = &f3;
+                        break;
+                    case 4:
+                        f = &f4;
+                    break;
+                        
+                    default:
+                        cout << "This was not supposed to happen!";
+                        break;
+                } //function assignment
+            }
+            cout << endl;
+        } while((functionChoice < 1)
+                ||
+                (functionChoice > numberOfFunctions));
+        
+        cout << "The function chosen is" << f -> getExpr() << endl;
+        dim = f -> dim;
+        if (dim == 2) area = &area1;
+        if (dim == 3) area = &area3;
+        x0 = new double long [dim]{};
+        
+        cout << endl << "Please choose method (type g for gradient descent, s for stochastic): ";
+        do {
+            cin >> methodChoice;
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            switch (methodChoice) {
+                case 'g':
+                    method = &grad1;
+                    break;
+                case 's':
+                    method = &stoc1;
+                    break;
+                default:
+                    cout << "I see you enjoy breaking rules. I like it.";
+                    cout << endl << "Please enter 'g' or 's': ";
+                    break;
+            }
+        } while (methodChoice != 'g' && methodChoice != 's');
         methodChoice == 'g' ? method = &grad1 : method = &stoc1;
         do {
             cout << endl << "Enter x_0 (" << dim << " numbers): ";
             for (int i = 0; i < dim; ++i){cin >> x0[i];}
+             cin.ignore(numeric_limits<streamsize>::max(),'\n');
             initialIn = area -> isIn(x0);
             if (!initialIn) cout << endl << "Initial guess out of bounds. Try again.";
         } while(!initialIn);
+        method -> SetDim(dim);
         method -> SetX0(x0);
+        stop -> SetDim(dim);
         
         double long min = method -> optimize(area, f, stop);
         cout << "min is: " << min << endl;
@@ -110,13 +166,14 @@ int main(int argc, const char * argv[]) {
         }
         cout << endl << "Number of iterations: " << method -> GetnIter();
         cout << endl;
-        
+        delete [] x0;
         
         cout << "continue? (y/n): ";
         cin >> ans;
+        cin.ignore(numeric_limits<streamsize>::max(),'\n');
     } while(ans == 'y');
     
     
-    delete [] x0;
+    
     return 0;
 }

@@ -23,7 +23,7 @@
  **/
 class OptMethod {
 protected:
-    double long *x0;
+    double long *x0{};
     double long *xFin{};
     int nIter = 0;
     long double step = 10e-4; 
@@ -41,7 +41,14 @@ public:
      * SetX0
      * @param num vector of values of the same dimension as dim
      **/
-    void SetX0(double long * num){for (int i = 0; i < dim; ++i) x0[i] = num[i];};
+    void SetDim(int num){dim = num;};
+    void SetX0(double long * num){
+        delete [] x0;
+        delete [] xFin;
+        x0 = new double long [dim];
+        xFin = new double long [dim]{};
+        for (int i = 0; i < dim; ++i) x0[i] = num[i];
+    };
     int GetnIter(){return nIter;}
 };
 #endif /* OptMethod_hpp */

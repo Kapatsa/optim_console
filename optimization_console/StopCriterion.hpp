@@ -29,6 +29,8 @@ public:
    // virtual bool stop(double long * xCurrent, double long * xPrev, double long *fCurr, double long *fPrev, int numOfIter) = 0;
     virtual bool stop(int numOfIter, int itersAfterLastSuccess) = 0;
     virtual bool checkGrad(double long *grad) = 0;
+    void SetDim(int num){dim = num;};
+    //void SetIter
 };
 
 #endif /* StopCriterion_hpp */

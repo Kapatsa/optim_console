@@ -13,6 +13,9 @@
 #include <stdio.h>
 #include <cmath>
 using namespace std;
+
+//TODO:: transfer all definitions to the cpp file
+
 /**
  * Abstract Function Class
  * 
@@ -58,6 +61,7 @@ public:
     };
 };
 
+
 class f3: public Function{
 public:
     f3(){
@@ -72,5 +76,21 @@ public:
     };
     
 };
+
+class f4: public Function{
+public:
+    f4(){
+        dim = 2;
+    };
+    ~f4(){};
+    std::string getExpr() override {
+        return " f(x,y) = (1-x)^2 + 100 * (y-x^2)^2 ";
+    };
+    long double eval(long double *x) override {
+        return (1 - x[0])*(1 - x[0]) + 100 * (x[1]-x[0]*x[0])*(x[1]-x[0]*x[0]);
+    };
+    
+};
+
 
 #endif /* Function_hpp */
