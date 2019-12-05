@@ -77,6 +77,7 @@ double long GradDesc::optimize(Area * area, Function * func, StopCriterion * sto
             //cout << endl << nIter << ". " << "gradNorm: " << norm(grad, dim) << " МaxLam: " << lambdaM << endl;
             //cout << endl << "Current iteration: ";
             //print(xCur, dim);
+            
         } while (stopCrit -> stop(xCur, xPrev, grad, nIter));
     }
     fCur = func -> eval(xCur);

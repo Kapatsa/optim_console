@@ -57,6 +57,7 @@ int main(int argc, const char * argv[]) {
     double long eps = 1e-5;
     int N = 5000;
     double long localProb = 0.5;
+    int maxItersAfterSuccess = 500;
     Abs stop1;
     StopCriterion * stop;
     stop = &stop1;
@@ -66,6 +67,7 @@ int main(int argc, const char * argv[]) {
 
     char methodChoice = 'g';
     char levelChoice = 'b';
+    char stopChoice = 'i';
     int functionChoice{};
     
     {
@@ -142,42 +144,81 @@ int main(int argc, const char * argv[]) {
         if (dim == 3) area = &area3;
         x0 = new double long [dim]{};
         
-        cout << endl << "Please choose method (type g for gradient descent, s for stochastic): ";
+        cout << endl << "Please choose method (type 'g' for gradient descent, 's' for stochastic): ";
         do {
             cin >> methodChoice;
             cin.ignore(numeric_limits<streamsize>::max(),'\n');
             switch (methodChoice) {
                 case 'g':
                     method = &grad1;
+                    stop -> SetStopChoice('g'); //default choice
                     break;
                 case 's':
                     method = &stoc1;
+                    stop -> SetStopChoice('i');
                     break;
                 default:
+                    method = &stoc1; // just for initialization
                     cout << "I see you enjoy breaking rules. I like it.";
                     cout << endl << "Please enter 'g' or 's': ";
                     break;
             }
         } while (methodChoice != 'g' && methodChoice != 's');
-        methodChoice == 'g' ? method = &grad1 : method = &stoc1;
         
-        if(methodChoice == 's' && levelChoice == 'a'){
-            cout << endl << "Enter local search probability for the method: ";
-            cin >> localProb;
-            cin.ignore(numeric_limits<streamsize>::max(),'\n');
-            method -> SetLocalProb(localProb);
-        }
-        
+        //TODO:: INPUT SHOULD BE CONTROLLED --- HOWEVER FOR READABILITY I OMITTED do-whiles
+        //ADVANCED SETTINGS
         if(levelChoice == 'a'){
-            cout << endl << "Enter eps for stop criterion: ";
-            cin >> eps;
-            cin.ignore(numeric_limits<streamsize>::max(),'\n');
-            stop -> SetEps(eps);
-            
-            cout << endl << "Enter N for stop criterion: ";
-            cin >> N;
-            cin.ignore(numeric_limits<streamsize>::max(),'\n');
-            stop -> SetN(N);
+            //STOCHASTIC ADVANCED SETTINGS
+            if(methodChoice == 's'){
+                cout << endl << "Choose stop criterion (type 'i' for iterative, 'l' for local): ";
+                cin >> stopChoice;
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                switch (stopChoice) {
+                    case 'i':
+                        stop -> SetStopChoice('i');
+                        cout << endl << "Enter max number of iterations after last success: ";
+                        cin >> maxItersAfterSuccess;
+                        cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                        stop -> SetMaxItersAfterLast(maxItersAfterSuccess);
+                        break;
+                    case 'l':
+                        stop -> SetStopChoice('l');
+                        break;
+                    default:
+                        break;
+                }
+                cout << endl << "Enter local search probability for the method (0 < p < 1): ";
+                cin >> localProb;
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                method -> SetLocalProb(localProb);
+            }
+            //GRAD DESCENT ADVANCED SETTINGS
+            if(methodChoice == 'g'){
+                cout << endl << "Choose stop criterion (type 'g' for gradient, 'x' for x-value difference): ";
+                cin >> stopChoice;
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                switch (stopChoice) {
+                    case 'g':
+                        stop -> SetStopChoice('g');
+                        break;
+                    case 'x':
+                        stop -> SetStopChoice('x');
+                        break;
+                    default:
+                        break;
+                }
+            }
+                if (stopChoice != 'i'){
+                cout << endl << "Enter eps for stop criterion: ";
+                cin >> eps;
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                stop -> SetEps(eps);
+                }
+                
+                cout << endl << "Enter N (max number of iterations) for stop criterion: ";
+                cin >> N;
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                stop -> SetN(N);
         }
         
                 

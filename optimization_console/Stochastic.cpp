@@ -90,22 +90,24 @@ double long Stochastic::optimize(Area * area, Function * func, StopCriterion * s
     double long * temp = new double long [dim];
     double long fTemp{};
     double long * xBest = new double long [dim];
+    double long * xPrev = new double long [dim];
     for(int i = 0; i < dim; ++i) xBest[i] = x0[i];
     double long fBest = func -> eval(x0);
-    double long * grad = new double long [dim];
-    for(int i = 0; i < dim; ++i) grad[i] = func -> grad(x0, i);
+    //double long * grad = new double long [dim];
+    //for(int i = 0; i < dim; ++i) grad[i] = func -> grad(x0, i);
 
     double long currentDelta = deltaInit;
     
     bool justImproved = 0;
+    bool proceed = 1;
     
     rangeAroundEps(rangeLocal, xLocal, currentDelta, dim, area -> getRange());
     for (int i = 0; i < dim; ++i){
         uLocal[i] = new std::uniform_real_distribution<>{static_cast<double>(rangeLocal[2*i]), static_cast<double>(rangeLocal[2*i+1])} ;
     }
     
-    //TODO:: MAKE NEW stopCriterion
-    for( ; stopCrit -> stop(nIter, itersAfterLastSuccess); ++nIter){
+    
+    for( ; proceed ; ++nIter){
         
         switch (d(gen)) {
             case 0: //LOCAL SEARCH
@@ -138,6 +140,7 @@ double long Stochastic::optimize(Area * area, Function * func, StopCriterion * s
         if(justImproved){
         //made this to improve readability and not to repeat chunks of code
            //RECORD VALUES INTO BEST, DECREASE DELTA, & CREATE NEW DISTRIBUTION FOR THE NEW DELTA
+           for (int i = 0; i < dim; ++i) xPrev[i] = xBest[i];
            for (int i = 0; i < dim; ++i) xBest[i] = temp[i];
            fBest = fTemp;
            for (int i = 0; i < dim; ++i) xLocal[i] = xBest[i];
@@ -154,7 +157,14 @@ double long Stochastic::optimize(Area * area, Function * func, StopCriterion * s
         
         ++itersAfterLastSuccess;
         justImproved = 0;
-        for(int i = 0; i < dim; ++i) grad[i] = func -> grad(x0, i);
+
+        //STOP CRITERION
+        if(stopCrit -> GetStopChoice() == 'i'){
+            if (stopCrit -> stop(nIter, itersAfterLastSuccess)) proceed = 0;
+        }
+        if (stopCrit -> GetStopChoice() == 'l'){
+            if (stopCrit -> stop(xBest, xPrev, /*doesn't matter what*/ xLocal /*is here*/, nIter)) proceed = 0;
+        }
         
     }
     
@@ -174,7 +184,7 @@ double long Stochastic::optimize(Area * area, Function * func, StopCriterion * s
     delete [] xLocal;
     delete [] temp;
     delete [] xBest;
-    delete [] grad;
+    //delete [] grad;
 
     return fBest;
     

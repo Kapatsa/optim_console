@@ -42,13 +42,19 @@ bool Abs::stop(int numOfIter, double long *grad){
  * @param xCurrent is the current point, @param xPrev is the previous chosen point, @param grad is the gradient value, @param numOfIter is the current number of iterations.
  * @return 0 if one of the stop criterions is satisfied, 1 if not.
  **/
-bool Abs::stop(double long * xCurrent, double long * xPrev,/*, double long *fCurr, double long *fPrev,*/ double long *grad ,int numOfIter) {
+bool Abs::stop(double long * xCurrent, double long * xPrev, double long *grad, int numOfIter) {
     bool ans{};
     double long * diff = new double long [dim]{};
     for (int i = 0; i < dim; ++i){
-        diff[i] = abs(xCurrent[i] - xPrev[i]);
+           diff[i] = abs(xCurrent[i] - xPrev[i]);
+       }
+    if(stopChoice == 'l' || stopChoice == 'x'){
+        ans = (norm(diff, dim) > eps) && (numOfIter < N);
     }
-    ans = (norm(grad, dim) > eps) && (norm(diff, dim) > eps) && (numOfIter < N);
+    if(stopChoice == 'g'){
+        ans = (norm(grad, dim) > eps) && (numOfIter < N);
+    }
+    
     delete [] diff;
     return ans;
 };
@@ -70,7 +76,7 @@ bool Abs::checkGrad(double long *grad){
 * Stop Criterion Function makes sure that the stop criterion is satisfied so that the algorithm can stop
 *
 * @param numOfIter is the current number of iterations,
- *@param itersAfterLastSuccess is the current number of
+ *@param itersAfterLastSuccess is the current number of iteration since the last success
 * @return 0 if one of the stop criterions is satisfied, 1 if not.
 **/
 bool Abs::stop(int numOfIter, int itersAfterLastSuccess){
