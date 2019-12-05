@@ -30,6 +30,9 @@ public:
     virtual bool stop(int numOfIter, int itersAfterLastSuccess) = 0;
     virtual bool checkGrad(double long *grad) = 0;
     void SetDim(int num){dim = num;};
+    void SetEps(double long num){eps = num;}
+    void SetN(int num){N = num;}
+    //void SetMaxAfterLast();
     //void SetIter
 };
 

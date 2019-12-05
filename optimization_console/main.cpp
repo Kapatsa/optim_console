@@ -30,7 +30,6 @@ int main(int argc, const char * argv[]) {
     
     char ans = 'y';
     
-    
     //functions
     f1 f1; // 0.10*cos(10*(x^2 + y^2)) (2 vars)
     f2 f2; // x^2 + y^2 + z^2 (3 vars)
@@ -55,8 +54,9 @@ int main(int argc, const char * argv[]) {
     RectArea * area = nullptr;
     
     //TODO:: set eps & noOfIters & MaxDifference
-    //double long eps = 1e-5;
-    //int iter = 5000;
+    double long eps = 1e-5;
+    int N = 5000;
+    double long localProb = 0.5;
     Abs stop1;
     StopCriterion * stop;
     stop = &stop1;
@@ -65,6 +65,7 @@ int main(int argc, const char * argv[]) {
     OptMethod * method;
 
     char methodChoice = 'g';
+    char levelChoice = 'b';
     int functionChoice{};
     
     {
@@ -82,7 +83,19 @@ int main(int argc, const char * argv[]) {
     
     //TODO:: The area is ...
     
+    
     do {
+        
+        cout << endl  << "Type 'b' for beginner, 'a' for advanced: " ;
+        do {
+                cin >> levelChoice;
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            if(levelChoice != 'a' && levelChoice != 'b'){
+                cout << endl << "Please enter 'b' or 'a': ";
+            }
+        } while (levelChoice != 'a' && levelChoice != 'b');
+        
+        
         cout << endl  << "Please choose a function by typing its number:" << endl;
        {cout << "1. " << f1.getExpr() << endl;
         cout << "2. " << f2.getExpr() << endl;
@@ -96,7 +109,7 @@ int main(int argc, const char * argv[]) {
             if ((functionChoice < 1)
                 ||
                 (functionChoice > numberOfFunctions)){
-                cout << "Oh, very funny. Please try again:";
+                cout << "Oh, very funny. Please try again.";
             }
             else {
                 switch (functionChoice) {
@@ -147,6 +160,27 @@ int main(int argc, const char * argv[]) {
             }
         } while (methodChoice != 'g' && methodChoice != 's');
         methodChoice == 'g' ? method = &grad1 : method = &stoc1;
+        
+        if(methodChoice == 's' && levelChoice == 'a'){
+            cout << endl << "Enter local search probability for the method: ";
+            cin >> localProb;
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            method -> SetLocalProb(localProb);
+        }
+        
+        if(levelChoice == 'a'){
+            cout << endl << "Enter eps for stop criterion: ";
+            cin >> eps;
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            stop -> SetEps(eps);
+            
+            cout << endl << "Enter N for stop criterion: ";
+            cin >> N;
+            cin.ignore(numeric_limits<streamsize>::max(),'\n');
+            stop -> SetN(N);
+        }
+        
+                
         do {
             cout << endl << "Enter x_0 (" << dim << " numbers): ";
             for (int i = 0; i < dim; ++i){cin >> x0[i];}

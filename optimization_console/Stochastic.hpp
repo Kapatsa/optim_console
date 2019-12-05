@@ -33,6 +33,7 @@ public:
     ~Stochastic(){delete [] x0; delete [] xFin;};
     long double optimize(Area * area, Function * func, StopCriterion * stopCrit) override;
     long double * getXFin() override { return xFin;};
+    void SetLocalProb(double long num) override {localProbability = num;}
 };
 
 

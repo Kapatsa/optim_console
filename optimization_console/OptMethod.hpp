@@ -49,6 +49,7 @@ public:
         xFin = new double long [dim]{};
         for (int i = 0; i < dim; ++i) x0[i] = num[i];
     };
+    virtual void SetLocalProb(double long num) = 0;
     int GetnIter(){return nIter;}
 };
 #endif /* OptMethod_hpp */
