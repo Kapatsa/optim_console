@@ -134,12 +134,11 @@ int main(int argc, const char * argv[]) {
                         break;
                 } //function assignment
             }
-            cout << endl;
         } while((functionChoice < 1)
                 ||
                 (functionChoice > numberOfFunctions));
         
-        cout << "The function chosen is" << f -> getExpr() << endl;
+        cout << "The function chosen is" << f -> getExpr();
         dim = f -> dim;
     
         if (dim == 2) area = &area1;
@@ -169,7 +168,7 @@ int main(int argc, const char * argv[]) {
         }
         area -> setDim(dim);
         area -> setRange(range);
-        cout << endl << "Chosen range: ";
+        cout << "Chosen range: ";
         area -> printExpr();
         
         cout << endl << "Please choose method (type 'g' for gradient descent, 's' for stochastic): ";
@@ -198,13 +197,13 @@ int main(int argc, const char * argv[]) {
         if(levelChoice == 'a'){
             //STOCHASTIC ADVANCED SETTINGS
             if(methodChoice == 's'){
-                cout << endl << "Choose stop criterion (type 'i' for iterative, 'l' for local): ";
+                cout << "Choose stop criterion (type 'i' for iterative, 'l' for local): ";
                 cin >> stopChoice;
                 cin.ignore(numeric_limits<streamsize>::max(),'\n');
                 switch (stopChoice) {
                     case 'i':
                         stop -> SetStopChoice('i');
-                        cout << endl << "Enter max number of iterations after last success: ";
+                        cout << "Enter max number of iterations after last success: ";
                         cin >> maxItersAfterSuccess;
                         cin.ignore(numeric_limits<streamsize>::max(),'\n');
                         stop -> SetMaxItersAfterLast(maxItersAfterSuccess);
@@ -222,7 +221,7 @@ int main(int argc, const char * argv[]) {
             }
             //GRAD DESCENT ADVANCED SETTINGS
             if(methodChoice == 'g'){
-                cout << endl << "Choose stop criterion (type 'g' for gradient, 'x' for x-value difference): ";
+                cout << "Choose stop criterion (type 'g' for gradient, 'x' for x-value difference): ";
                 cin >> stopChoice;
                 cin.ignore(numeric_limits<streamsize>::max(),'\n');
                 switch (stopChoice) {
@@ -237,13 +236,13 @@ int main(int argc, const char * argv[]) {
                 }
             }
                 if (stopChoice != 'i'){
-                cout << endl << "Enter eps for stop criterion: ";
+                cout << "Enter eps for stop criterion: ";
                 cin >> eps;
                 cin.ignore(numeric_limits<streamsize>::max(),'\n');
                 stop -> SetEps(eps);
                 }
                 
-                cout << endl << "Enter N (max number of iterations) for stop criterion: ";
+                cout << "Enter N (max number of iterations) for stop criterion: ";
                 cin >> N;
                 cin.ignore(numeric_limits<streamsize>::max(),'\n');
                 stop -> SetN(N);
@@ -252,28 +251,28 @@ int main(int argc, const char * argv[]) {
         x0 = new double long [dim]{};
         
         do {
-            cout << endl << "Enter x_0 (" << dim << " numbers): ";
+            cout << "Enter x_0 (" << dim << " numbers): ";
             for (int i = 0; i < dim; ++i){cin >> x0[i];}
              cin.ignore(numeric_limits<streamsize>::max(),'\n');
             initialIn = area -> isIn(x0);
-            if (!initialIn) cout << endl << "Initial guess out of bounds. Try again.";
+            if (!initialIn) cout << "Initial guess out of bounds. Try again.";
         } while(!initialIn);
         method -> SetDim(dim);
         method -> SetX0(x0);
         stop -> SetDim(dim);
         
         double long min = method -> optimize(area, f, stop);
-        cout << "min is: " << min << endl;
-        cout << "argmin is: ";
+        cout << "|| min is: " << min << endl;
+        cout << "|| argmin is: ";
         for (int i = 0; i < dim; ++i){
             cout << method -> getXFin()[i] << " ";
         }
-        cout << endl << "Number of iterations: " << method -> GetnIter();
+        cout << endl << "|| Number of iterations: " << method -> GetnIter();
         cout << endl;
         delete [] x0;
         delete [] range;
         
-        cout << "continue? (y/n): ";
+        cout << endl << "continue? (y/n): ";
         cin >> ans;
         cin.ignore(numeric_limits<streamsize>::max(),'\n');
     } while(ans == 'y');

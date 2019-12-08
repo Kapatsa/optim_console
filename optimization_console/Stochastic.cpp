@@ -160,7 +160,7 @@ double long Stochastic::optimize(Area * area, Function * func, StopCriterion * s
 
         //STOP CRITERION
         if(stopCrit -> GetStopChoice() == 'i'){
-            if (stopCrit -> stop(nIter, itersAfterLastSuccess)) proceed = 0;
+            if (!stopCrit -> stop(nIter, itersAfterLastSuccess)) proceed = 0;
         }
         if (stopCrit -> GetStopChoice() == 'l'){
             if (!stopCrit -> stop(xBest, xPrev, /*doesn't matter what*/ xLocal /*is here*/, nIter)) proceed = 0;
