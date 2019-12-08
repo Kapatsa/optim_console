@@ -47,9 +47,9 @@ int main(int argc, const char * argv[]) {
     RectArea area3(range3, 3);
     RectArea area4(range4, 3);
 
-    //WHEN CHANGING FUNCTIONS BEWARE OF AREA CHOICE
     Function * f = &f1;
     double long * x0{};
+    double long * range{};
     
     RectArea * area = nullptr;
     
@@ -69,6 +69,7 @@ int main(int argc, const char * argv[]) {
     char levelChoice = 'b';
     char stopChoice = 'i';
     int functionChoice{};
+    int rangeIncorrect = 0;
     
     {
     //TEST
@@ -140,9 +141,36 @@ int main(int argc, const char * argv[]) {
         
         cout << "The function chosen is" << f -> getExpr() << endl;
         dim = f -> dim;
+    
         if (dim == 2) area = &area1;
         if (dim == 3) area = &area3;
-        x0 = new double long [dim]{};
+        if (levelChoice == 'b'){
+            cout << "The area I chose for you is ";
+            area -> printExpr();
+            cout << ". You're welcome.";
+        }
+        else if(levelChoice == 'a'){
+            //create range, delete later
+            range = new long double [2*dim];
+            do{
+                rangeIncorrect = 0;
+                cout << endl << "Please enter range (" << 2*dim << " numbers): " ;
+                for (int i = 0; i < 2*dim; ++i){
+                    cin >> range[i];
+                }
+                cin.ignore(numeric_limits<streamsize>::max(),'\n');
+                for (int i = 0; i < dim; ++i){
+                    if (range[2*i] > range[2*i + 1]){
+                        rangeIncorrect = 1;
+                        cout << endl << "Range is incorrect! Try again.";
+                    }
+                }
+            } while(rangeIncorrect);
+        }
+        area -> setDim(dim);
+        area -> setRange(range);
+        cout << endl << "Chosen range: ";
+        area -> printExpr();
         
         cout << endl << "Please choose method (type 'g' for gradient descent, 's' for stochastic): ";
         do {
@@ -221,7 +249,8 @@ int main(int argc, const char * argv[]) {
                 stop -> SetN(N);
         }
         
-                
+        x0 = new double long [dim]{};
+        
         do {
             cout << endl << "Enter x_0 (" << dim << " numbers): ";
             for (int i = 0; i < dim; ++i){cin >> x0[i];}
@@ -242,6 +271,7 @@ int main(int argc, const char * argv[]) {
         cout << endl << "Number of iterations: " << method -> GetnIter();
         cout << endl;
         delete [] x0;
+        delete [] range;
         
         cout << "continue? (y/n): ";
         cin >> ans;

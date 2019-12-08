@@ -10,6 +10,7 @@
 #define Area_hpp
 
 #include <stdio.h>
+#include <string>
 /**
  * Area Class
  *
@@ -23,6 +24,9 @@ public:
     ~Area(){};
     virtual bool isIn(double long *point) = 0;
     virtual double long * getRange() = 0;
+    virtual void setRange(double long *x) = 0;
+    virtual void setDim(int dimen) = 0;
+    virtual void printExpr() = 0;
     //virtual bool isBorder();
 };
 

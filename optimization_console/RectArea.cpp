@@ -23,3 +23,24 @@ bool RectArea::isIn(double long *point){
     }
     return temp;
 };
+
+void RectArea::printExpr() {
+    for (int i = 0; i < dim; ++i){
+        std::cout << "[";
+        std::cout << range[2*i] << ", ";
+        std::cout << range[2*i + 1];
+        std::cout << "]";
+        (i != dim - 1) ? (std::cout << ", ") : (std::cout << "");
+    }
+}
+
+void RectArea::setRange(double long *x){
+    delete [] range;
+    range = new long double [2*dim];
+    for (int i = 0; i < 2*dim; ++i) range[i] = x[i];
+};
+void RectArea::setDim(int dimen){
+    dim = dimen;
+};
+
+

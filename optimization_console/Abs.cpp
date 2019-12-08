@@ -80,5 +80,5 @@ bool Abs::checkGrad(double long *grad){
 * @return 0 if one of the stop criterions is satisfied, 1 if not.
 **/
 bool Abs::stop(int numOfIter, int itersAfterLastSuccess){
-    return (numOfIter < N) && (itersAfterLastSuccess < maxItersAfterLastSuccess);
+    return (numOfIter > N) || (itersAfterLastSuccess > maxItersAfterLastSuccess);
 };

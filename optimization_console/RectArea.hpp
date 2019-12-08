@@ -10,6 +10,7 @@
 #define RectArea_hpp
 
 #include <stdio.h>
+#include <iostream>
 #include "Area.hpp"
 /**
  * Rectangle Area Class
@@ -34,6 +35,10 @@ public:
      **/
     bool isIn(double long *point) override;
     double long * getRange() override { return range; };
+    void setRange(double long *x) override;
+    void setDim(int dimen) override;
+    void printExpr() override;
+    
 };
 
 #endif /* RectArea_hpp */
