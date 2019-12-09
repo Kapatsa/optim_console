@@ -48,7 +48,6 @@ double long GradDesc::optimize(Area * area, Function * func, StopCriterion * sto
     int splitSize = 4; //Number of intervals. TODO(?): Include as a parameter
     long double lambdaM;
     //long double * lambdaSplit = new long double [splitSize + 1];
-    int j{};
     for(int i = 0; i < dim; ++i) grad[i] = - func -> grad(x0, i);
     //checking grad at x0
     if(stopCrit -> checkGrad(grad)){
@@ -56,7 +55,7 @@ double long GradDesc::optimize(Area * area, Function * func, StopCriterion * sto
         do {//OPTIMIZE ALONG THE NEGATIVE GRADIENT UNTIL THE BORDER
             for(int i = 0; i < dim; ++i) grad[i] = - func -> grad(xCur, i);
             ++nIter;
-            xPrev[j] = xCur[j];
+            for(int j = 0; j < dim; ++j) xPrev[j] = xCur[j]; //was no index!?
             //CALCULATE LAMBDA AT BORDER
             //cout << "grad: "; //printing
             //print(grad, dim);
